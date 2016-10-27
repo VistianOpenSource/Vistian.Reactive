@@ -5,6 +5,7 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vistian.Reactive.Logging.Configuration;
 using Vistian.Reactive.Logging.Providers;
 
 // ReSharper disable once CheckNamespace

@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71A37EB3-C1AA-4C67-9F6D-8D14E73C285A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vistian.Reactive</RootNamespace>
+    <AssemblyName>Vistian.Reactive</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Linq\ObservableRetryExtensions.cs" />
+    <Compile Include="Logging\Configuration\HostConfiguration.cs" />
+    <Compile Include="Logging\Configuration\LogFormattingConfiguration.cs" />
+    <Compile Include="Logging\Configuration\RxLoggerConfiguration.cs" />
+    <Compile Include="Logging\Formatting\DefaultRxLogFormatter.cs" />
+    <Compile Include="Logging\Formatting\DefaultRxLogMetaFormatter.cs" />
+    <Compile Include="Logging\Formatting\FormatFlags.cs" />
+    <Compile Include="Logging\Formatting\FormatterAttribute.cs" />
+    <Compile Include="Logging\Formatting\FormatterResolver.cs" />
+    <Compile Include="Logging\Formatting\IFormatterResolver.cs" />
+    <Compile Include="Logging\Formatting\IRxLogFormatter.cs" />
+    <Compile Include="Logging\Formatting\IRxLogMetaFormatter.cs" />
+    <Compile Include="Logging\Formatting\RxLogFormatter.cs" />
+    <Compile Include="Logging\Formatting\SimpleFormatter.cs" />
+    <Compile Include="Logging\IRxLogHost.cs" />
+    <Compile Include="Logging\ObservableExtensions.cs" />
+    <Compile Include="Logging\Providers\Classified\Classified.cs" />
+    <Compile Include="Logging\Providers\Classified\ClassifiedFormatter.cs" />
+    <Compile Include="Logging\Providers\Classified\LogLevel.cs" />
+    <Compile Include="Logging\RxLog.cs" />
+    <Compile Include="Logging\RxLogEntry.cs" />
+    <Compile Include="Logging\RxLogEntryCoreMixins.cs" />
+    <Compile Include="Logging\RxLogEntryMeta.cs" />
+    <Compile Include="Logging\RxObservableLogHost.cs" />
+    <Compile Include="Logging\Subscribers\Debug\Debug.cs" />
+    <Compile Include="Logging\Subscribers\IO\FileLog.cs" />
+    <Compile Include="Logging\Subscribers\IO\FileLogExtensions.cs" />
+    <Compile Include="Logging\Subscribers\IO\FileLogOptions.cs" />
+    <Compile Include="Logging\Subscribers\IO\FileLogSubscriberExtensions.cs" />
+    <Compile Include="Logging\Subscribers\IO\LogFileManager.cs" />
+    <Compile Include="Metrics\Counter.cs" />
+    <Compile Include="Metrics\Discrete.cs" />
+    <Compile Include="Metrics\IMetric.cs" />
+    <Compile Include="Metrics\Logging\CounterFormatter.cs" />
+    <Compile Include="Metrics\Logging\DiscreteFormatter.cs" />
+    <Compile Include="Metrics\Logging\LoggingTimerContext.cs" />
+    <Compile Include="Metrics\Logging\MetricsFormatter.cs" />
+    <Compile Include="Metrics\Logging\TimerContextMixins.cs" />
+    <Compile Include="Metrics\Logging\TimerFormatter.cs" />
+    <Compile Include="Metrics\Logging\TimingBlockFormatter.cs" />
+    <Compile Include="Metrics\Metric.cs" />
+    <Compile Include="Metrics\Metrics.cs" />
+    <Compile Include="Metrics\MetricType.cs" />
+    <Compile Include="Metrics\Timer.cs" />
+    <Compile Include="Metrics\TimerContext.cs" />
+    <Compile Include="Metrics\TimerEntry.cs" />
+    <Compile Include="Metrics\TimingBlock.cs" />
+    <Compile Include="Metrics\Unit.cs" />
+    <Compile Include="Paging\BaseChangeSetProvider.cs" />
+    <Compile Include="Paging\BaseChangeSetProviderMixins.cs" />
+    <Compile Include="Paging\CollectionItemTouchedStrategy.cs" />
+    <Compile Include="Paging\DynamicDataReactiveListExtensions.cs" />
+    <Compile Include="Paging\IChangeSetPagedDataProvider.cs" />
+    <Compile Include="Paging\ICollectionItemTouchedStrategy.cs" />
+    <Compile Include="Paging\IPagedBackingStoreCollection.cs" />
+    <Compile Include="Paging\IPagedDataProvider.cs" />
+    <Compile Include="Paging\IPagedDataProviderMixins.cs" />
+    <Compile Include="Paging\IPagingController.cs" />
+    <Compile Include="Paging\ObservablePagingController.cs" />
+    <Compile Include="Paging\OperationQueue.cs" />
+    <Compile Include="Paging\PagedObservableCacheChangeSetProvider.cs" />
+    <Compile Include="Paging\PagedObservableKeyedReactiveListChangeSetProvider.cs" />
+    <Compile Include="Paging\PageReader.cs" />
+    <Compile Include="Paging\PageReadRequest.cs" />
+    <Compile Include="Paging\PageReadResult.cs" />
+    <Compile Include="Paging\ReadInProgress.cs" />
+    <Compile Include="Paging\ReadOnlyBackingStoreCollection.cs" />
+    <Compile Include="Paging\ReadOnlyStrategyPagedCollection.cs" />
+    <Compile Include="Paging\SimpleBackingStoreCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReactiveUI\KeyedReactiveList.cs" />
+    <Compile Include="ReactiveUI\KeyedReactiveListExtensions.cs" />
+    <Compile Include="Validation\BasePropertyValidation.cs" />
+    <Compile Include="Validation\BasePropertyValidationGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BasePropertyValidationGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\ISupportsValidation.cs" />
+    <Compile Include="Validation\IValidationBinding.cs" />
+    <Compile Include="Validation\IValidationComponent.cs" />
+    <Compile Include="Validation\IValidationTextFormatter.cs" />
+    <Compile Include="Validation\IViewForValidateableMixins.cs" />
+    <Compile Include="Validation\ModelObservableValidation.cs" />
+    <Compile Include="Validation\SingleLineFormatter.cs" />
+    <Compile Include="Validation\ValidationBinding.cs" />
+    <Compile Include="Validation\ValidationContext.cs" />
+    <Compile Include="Validation\ValidationContextMixins.cs" />
+    <Compile Include="Validation\ValidationHelper.cs" />
+    <Compile Include="Validation\ValidationState.cs" />
+    <Compile Include="Validation\ValidationStateComparer.cs" />
+    <Compile Include="Validation\ValidationText.cs" />
+    <Compile Include="Validation\ViewModelIValidateableMixins.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DynamicData, Version=4.9.0.1189, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamicData.4.9.0.1189\lib\portable45-net45+win8+wp8+wpa81\DynamicData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReactiveUI, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\reactiveui-core.7.0.0.1477555604\lib\portable-net45+netcore45+wpa81+win8+wp8+UAP10+MonoAndroid403+MonoTouch10+Xamarin.iOS10\ReactiveUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Splat, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Splat.1.4.0\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Rx-Core.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Rx-Interfaces.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Rx-Linq.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Rx-PlatformServices.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Validation\BasePropertyValidationGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BasePropertyValidationGenerator.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Vistian.Core\Vistian.Core\Vistian.Core\Vistian.Core.csproj">
+      <Project>{740719A6-97CD-407F-ACD8-270A72C703F6}</Project>
+      <Name>Vistian.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

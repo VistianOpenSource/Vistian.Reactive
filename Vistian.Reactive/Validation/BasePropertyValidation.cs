@@ -66,7 +66,6 @@ namespace Vistian.Reactive.Validation
             return exclusively ? _propertyNames.Contains(propertyName) && _propertyNames.Count == 1 : _propertyNames.Contains(propertyName);
         }
 
-
         /// <summary>
         /// Get the total number of properties referenced.
         /// </summary>

@@ -79,6 +79,8 @@ namespace Vistian.Reactive.Paging
         /// </summary>
         public int? Total { get; private set; }
 
+
+
         protected BaseChangeSetProvider(IPagingController<TItem> pagingController,
             IScheduler readScheduler = null,
             IScheduler updateScheduler = null)
@@ -164,7 +166,7 @@ namespace Vistian.Reactive.Paging
                         Do(l => AddUpdate(l.Items, replaceExisting));
                 }
                 // no need to remotely read anything, just get on with it
-                return Observable.Return(new PageReadResult<TItem>(pageReadRequest.Offset, null, null));
+                return Observable.Return(new PageReadResult<TItem>(pageReadRequest.Offset, this.Total, null));
             }
             );
         }

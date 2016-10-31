@@ -213,6 +213,8 @@ namespace Vistian.Reactive.Paging
         /// <returns></returns>
         public IObservable<PageReadResult<TItem>> ReadPageObservable(PageReadRequest pageReadRequest)
         {
+            Guard.NotNull(pageReadRequest);
+
             return EnqueueReadObservable(pageReadRequest);
         }
     }

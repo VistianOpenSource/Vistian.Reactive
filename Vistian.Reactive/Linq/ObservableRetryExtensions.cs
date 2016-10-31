@@ -57,7 +57,7 @@ namespace Vistian.Reactive.Linq
                     StartWith(true). // prime the pumps to ensure at least one execution
                     TakeWhile(shouldTry => shouldTry). // whilst we should try again
                     ObserveOn(executeScheduler).
-                    Select(g => source.Materialize()). // get the result of the selector
+                    Select(g => Observable.Defer(() => source.Materialize())). // get the result of the selector
                     Switch(). // always take the last one
                     Do((v) =>
                         {

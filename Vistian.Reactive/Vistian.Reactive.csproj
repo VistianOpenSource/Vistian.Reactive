@@ -104,8 +104,8 @@
     <Compile Include="Paging\ReadOnlyStrategyPagedCollection.cs" />
     <Compile Include="Paging\SimpleBackingStoreCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReactiveUI\KeyedReactiveList.cs" />
-    <Compile Include="ReactiveUI\KeyedReactiveListExtensions.cs" />
+    <Compile Include="Validation\ReactiveUI\KeyedReactiveList.cs" />
+    <Compile Include="Validation\ReactiveUI\KeyedReactiveListExtensions.cs" />
     <Compile Include="Validation\BasePropertyValidation.cs" />
     <Compile Include="Validation\BasePropertyValidationGenerator.cs">
       <AutoGen>True</AutoGen>
@@ -167,6 +167,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="NuGet.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

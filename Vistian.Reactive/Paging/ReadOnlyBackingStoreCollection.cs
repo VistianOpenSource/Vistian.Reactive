@@ -46,7 +46,7 @@ namespace Vistian.Reactive.Paging
                         {
                             case ListChangeReason.Add:
 
-                                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, change.Item, change.Item.CurrentIndex));
+                                CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, change.Item.Current, change.Item.CurrentIndex));
                                 break;
 
                             case ListChangeReason.AddRange:

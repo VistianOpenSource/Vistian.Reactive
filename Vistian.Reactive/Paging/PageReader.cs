@@ -36,13 +36,18 @@ namespace Vistian.Reactive.Paging
                 Observable.Generate(alignedStart, v => v < alignedEnd, value => value + pageSize, v => v, _readScheduler);
 
             var observable = generator.
-                Select(requestedOffset => Observable.Defer(() => _pagingController.ReadPage(requestedOffset, pageSize))).   // read a page
+                Select(requestedOffset => Observable.Defer(() => _pagingController.ReadPage(requestedOffset, Math.Min(pageSize,alignedEnd-requestedOffset)))).   // read a page
                 Concat().                                                                                                   // ensure one at a time of prior operation
                 Scan(new ReadInProgress<TSource>(), (acc, result) =>                                                        // accumulate reads into a single result
                 {
                     acc.AmountRead = result.AmountRead;
                     acc.Offset = result.Offset;
-                    acc.Items.AddRange(result.Items);
+
+                    if (result.Items != null)
+                    {
+                        acc.Items.AddRange(result.Items);
+                    }
+
                     acc.Total = result.Total;
                     return acc;
                 }).

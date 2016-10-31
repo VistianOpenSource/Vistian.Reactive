@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using DynamicData;
 using DynamicData.Binding;
 using ReactiveUI;
+using Vistian.Contract;
 
 namespace Vistian.Reactive.Paging
 {
@@ -71,6 +72,8 @@ namespace Vistian.Reactive.Paging
         /// <param name="scheduler">The scheduler on which data set changes are to be observed</param>
         public SimpleBackingStoreCollection(IChangeSetPagedDataProvider<TItem> changeSetProvider, IScheduler scheduler = null)
         {
+            Guard.NotNull(changeSetProvider);
+
             // record the change set provider
             _changeSetProvider = changeSetProvider;
 

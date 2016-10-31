@@ -18,6 +18,7 @@ namespace Vistian.Reactive.Paging
         public ReadOnlyStrategyPagedCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection,
             ICollectionItemTouchedStrategy touchedStrategy) : base(pagedBackingStoreCollection)
         {
+            Guard.NotNull(pagedBackingStoreCollection);
             Guard.NotNull(touchedStrategy);
 
             _touchedStrategy = touchedStrategy;
@@ -51,7 +52,6 @@ namespace Vistian.Reactive.Paging
                 base[index] = value;
             }
         }
-
 
         /// <summary>
         /// Track the referencing of the count.

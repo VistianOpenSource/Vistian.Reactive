@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vistian.Contract;
 using Vistian.Reactive.Linq;
 
 namespace Vistian.Reactive.Paging
@@ -21,6 +22,9 @@ namespace Vistian.Reactive.Paging
                                             Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable = null,
                                             int maxPageSize = 10)
         {
+            Guard.NotNull(readChunkObservable);
+            Guard.True(() => maxPageSize > 0);
+
             MaxPageSize = maxPageSize;
             _readChunkObservable = readChunkObservable;
             _exceptionObservable = exceptionObservable ?? DefaultErrorObservable;
@@ -34,7 +38,7 @@ namespace Vistian.Reactive.Paging
         /// <returns></returns>
         public IObservable<PageReadResult<TItem>> ReadPage(int offset, int take)
         {
-            var request = new PageReadRequest() { Offset = offset, Take = take };
+            var request = new PageReadRequest() { Offset = offset, Take = Math.Min(take,MaxPageSize) };
 
             return _readChunkObservable(request).RetryX((retryCount, ex) => OnErrorObservable(request, ex));
         }

@@ -121,6 +121,10 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vistian.Core\Vistian.Core.csproj">
+      <Project>{738ef0aa-c2ba-46e0-849f-505a8bdcb6fa}</Project>
+      <Name>Vistian.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vistian.Reactive\Vistian.Reactive.csproj">
       <Project>{71a37eb3-c1aa-4c67-9f6d-8d14e73c285a}</Project>
       <Name>Vistian.Reactive</Name>

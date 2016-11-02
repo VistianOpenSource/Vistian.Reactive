@@ -178,15 +178,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Vistian.Core\Vistian.Core\Vistian.Core\Vistian.Core.csproj">
-      <Project>{740719A6-97CD-407F-ACD8-270A72C703F6}</Project>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vistian.Core\Vistian.Core.csproj">
+      <Project>{738ef0aa-c2ba-46e0-849f-505a8bdcb6fa}</Project>
       <Name>Vistian.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

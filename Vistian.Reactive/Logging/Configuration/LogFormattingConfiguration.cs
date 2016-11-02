@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Vistian.Contract;
 using Vistian.Reactive.Logging.Formatting;
 
 namespace Vistian.Reactive.Logging.Configuration
@@ -32,6 +33,7 @@ namespace Vistian.Reactive.Logging.Configuration
         /// <param name="resolver"></param>
         public LogFormattingConfiguration(IFormatterResolver resolver)
         {
+            Guard.NotNull(resolver,nameof(resolver));
             Resolver = resolver;
         }
 

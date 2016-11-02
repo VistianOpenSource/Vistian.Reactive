@@ -19,6 +19,8 @@ namespace Vistian.Reactive.Paging
         /// <typeparam name="T"></typeparam>
         /// <param name="source">The source.</param>
         /// <returns></returns>
+        /// <remarks>
+        /// Taken from Dynamic data, but 'adjusted'/'fixed' (depending upon ones point of view) to ensure positions are retained for Replacements</remarks>
         /// <exception cref="ArgumentNullException">source</exception>
         public static IObservable<IChangeSet<T>> ToObservableChangeSetNew<T>(this ReactiveList<T> source)
         {

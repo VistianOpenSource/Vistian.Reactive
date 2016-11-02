@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vistian.Contract;
 
 namespace Vistian.Reactive.Validation
 {
@@ -17,8 +18,9 @@ namespace Vistian.Reactive.Validation
         /// Create an instance with an optional, custom separator.
         /// </summary>
         /// <param name="separator"></param>
-        public SingleLineFormatter(string separator = null)
+        public SingleLineFormatter(string separator)
         {
+            Guard.NotNull(separator);
             _separator = separator;
         }
 
@@ -27,6 +29,6 @@ namespace Vistian.Reactive.Validation
             return validationText != null ? validationText.ToSingleLine(_separator) : string.Empty;
         }
 
-        public static SingleLineFormatter Default { get; } = new SingleLineFormatter();
+        public static SingleLineFormatter Default { get; } = new SingleLineFormatter(",");
     }
 }

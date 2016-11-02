@@ -29,8 +29,9 @@ namespace Vistian.Reactive.Logging.Configuration
         public RxLoggerConfiguration(HostConfiguration hostConfiguration, LogFormattingConfiguration formattingConfiguration,
                                     IEnumerable<Func<RxLoggerConfiguration, IObservable<RxLogEntry>, IObservable<Unit>>> logSubscribers)
         {
-            Guard.NotNull(hostConfiguration);
-            Guard.NotNull(formattingConfiguration);
+            Guard.NotNull(hostConfiguration,nameof(hostConfiguration));
+            Guard.NotNull(formattingConfiguration,nameof(formattingConfiguration));
+            Guard.NotNull(logSubscribers,nameof(logSubscribers));
 
             Host = hostConfiguration;
             Formatting = formattingConfiguration;

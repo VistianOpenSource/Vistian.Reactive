@@ -24,6 +24,7 @@ namespace Vistian.Reactive.Paging
             var take = pageReadRequest.Take;
             var extremum = offset + take;
 
+            /*
             var anythingToRead = true;
 
             if (provider.Total.HasValue)
@@ -37,10 +38,39 @@ namespace Vistian.Reactive.Paging
                 alignedStart = provider.PageAlignedOffset(currentCount);
 
                 // calculate the end
-                alignedEnd = Math.Min(alignedStart + take, extremum);
+                alignedEnd = Math.Max(alignedStart + take, extremum);
+
+                anythingToRead = alignedStart != alignedEnd;
+            }
+            */
+
+
+
+            var topEnd = int.MaxValue;
+
+            if (provider.Total.HasValue)
+            {
+                topEnd = provider.Total.Value;
             }
 
-            return anythingToRead;
+            var isAnythingToRead = offset + take <= topEnd && currentCount < offset+take;
+
+            if (isAnythingToRead)
+            {
+                alignedStart = currentCount;
+
+                var adjustedExtremum = Math.Min(extremum, topEnd);
+
+                alignedEnd = adjustedExtremum;
+
+                isAnythingToRead = alignedStart != alignedEnd;
+
+            }
+
+            return isAnythingToRead;
+
+
+            //return anythingToRead;
         }
 
     }

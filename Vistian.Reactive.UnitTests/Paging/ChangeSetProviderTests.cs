@@ -19,19 +19,6 @@ namespace Vistian.Reactive.UnitTests.Paging
         private const int DefaultPageSize = 25;
         // so what do we need to test
 
-        /*
-        IObservable<PageReadResult<T>> ReadPageObservable(PageReadRequest pageReadRequest);
-
-        /// <summary>
-        /// The maximum size pages will be read in.
-        /// </summary>
-        int MaxPageSize { get; }
-
-        /// <summary>
-        /// Gets the total available
-        /// </summary>
-        int? Total { get; }
-        */
 
         public ChangeSetProviderTests()
         {
@@ -154,7 +141,7 @@ namespace Vistian.Reactive.UnitTests.Paging
             return _isTrue;
         }
 
-        protected override void AddUpdate(List<T> newList, bool replaceAll = false)
+        protected override void AddUpdate(int offset,List<T> items, bool replaceAll = false)
         {
         }
     }

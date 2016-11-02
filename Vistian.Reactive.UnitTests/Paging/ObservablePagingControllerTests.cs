@@ -15,14 +15,6 @@ namespace Vistian.Reactive.UnitTests.Paging
     {
         private ObservablePagingController<CollectionModel> _pagingController;
         private long _invokeCount;
-        // so what tests do we need ?
-
-        // verify that the read request goes through...
-        // exception raized
-        // retry occurs when exception told its okay
-        // max size is passed through correctly 
-
-
 
         [Fact]
         public void ReadRequestPassedThroughTest()

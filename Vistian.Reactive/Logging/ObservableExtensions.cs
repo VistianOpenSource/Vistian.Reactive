@@ -26,7 +26,9 @@ namespace Vistian.Reactive.Logging
         /// <returns></returns>
         /// 
         [DebuggerStepThrough]
-        public static IObservable<TSource> Trace<TSource>(this IObservable<TSource> source, string name = default(string), [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int lineNo = 0)
+        public static IObservable<TSource> Trace<TSource>(this IObservable<TSource> source,
+            string name = default(string), [CallerMemberName] string callerMemberName = "",
+            [CallerLineNumber] int lineNo = 0)
         {
             Guard.NotNull(source);
             // counter used for our 'tick' occurance 
@@ -53,9 +55,21 @@ namespace Vistian.Reactive.Logging
 
                 trace("Subscribe", string.Empty);
 
-                var subscription = source.Subscribe(v => { trace("OnNext", v); observer.OnNext(v); },
-                                                    e => { trace("OnError", e.Message); observer.OnError(e); },
-                                                   () => { trace("OnCompleted", ""); observer.OnCompleted(); });
+                var subscription = source.Subscribe(v =>
+                    {
+                        trace("OnNext", v);
+                        observer.OnNext(v);
+                    },
+                    e =>
+                    {
+                        trace("OnError", e.Message);
+                        observer.OnError(e);
+                    },
+                    () =>
+                    {
+                        trace("OnCompleted", "");
+                        observer.OnCompleted();
+                    });
 
 
                 return new CompositeDisposable(subscription, Disposable.Create(() => trace("Dispose", string.Empty)));
@@ -69,12 +83,13 @@ namespace Vistian.Reactive.Logging
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <param name="host"></param>
-        /// <param name="instance"></param>
+        /// <param name="loggedInstance"></param>
         /// <param name="callerMemberName"></param>
         /// <param name="lineNo"></param>
         /// <returns></returns>
         [DebuggerStepThrough]
-        public static IObservable<TSource> Log<TSource, T>(this IObservable<TSource> source, object host, Func<TSource, T> instance,
+        public static IObservable<TSource> Log<TSource, T>(this IObservable<TSource> source, object host,
+            Func<TSource, T> loggedInstance,
             [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int lineNo = 0)
         {
             Guard.NotNull(source);
@@ -84,10 +99,19 @@ namespace Vistian.Reactive.Logging
                 var meta = new RxLogEntryMeta(host.GetType(), callerMemberName, lineNo);
 
                 var subscription = source.Subscribe(v =>
-                {
-                    var i = instance(v);
+                    {
+                        var i = loggedInstance(v);
 
-                    RxLog.Log(meta, i);
+                        try
+                        {
+                            RxLog.Log(meta, i);
+                        }
+                        catch (Exception ex)
+                        {
+                            
+                            throw;
+                        }
+
 
                     observer.OnNext(v);
                 },

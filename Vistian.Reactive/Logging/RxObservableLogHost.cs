@@ -31,11 +31,6 @@ namespace Vistian.Reactive.Logging
         /// </summary>
         private readonly CompositeDisposable _disposables;
 
-        /// <summary>
-        /// The message observable
-        /// </summary>
-        private readonly IObservable<RxLogEntry> _messageObservable;
-
 
         /// <summary>
         /// Create an instance using the specified configuration
@@ -51,44 +46,28 @@ namespace Vistian.Reactive.Logging
 
             _pumpSubject = Subject.Synchronize(pump, Configuration.Host.PublishScheduler);
 
-            //TODO: perhaps need to 'wind in' the duplicate sync subjects, only need one really, that which 
             // starts the process...
 
             var log = new ReplaySubject<RxLogEntry>(Configuration.Host.ReplaySize);
 
-            // ensure we marshall the log requests to the appropriate scheduler...
-            _syncsubject = Subject.Synchronize(log, Configuration.Host.PublishScheduler);
+            _syncsubject = log;
 
             // setup the subscription
-            /*
+            
             var prePumpSubscription = Configuration.Host.PrePumpObservable(_pumpSubject).
-                Do(entry => { _syncsubject.OnNext(entry); }).
-                Catch(Observable.Empty<RxLogEntry>()).
-                Retry().
-                Subscribe();
-            */
-
-            var prePumpSubscription = _pumpSubject.
                 Do(Enqueue).
                 Select(_ => Unit.Default).
                 Catch((Exception e) => this.OnError(e)).
                 Retry().
                 Subscribe();
-
+            
             _disposables.Add(prePumpSubscription);
 
             // Create a single one
-            _messageObservable = log.Publish().RefCount();
+            var messageObservable = log.Publish().RefCount();
 
             // and now build all of the subscribers
-            BuildSubscribers(_messageObservable);
-        }
-
-        /// <summary>
-        /// Initialize the publish pipeline and the subscribers
-        /// </summary>
-        private void Initialize()
-        {
+            BuildSubscribers(messageObservable);
         }
 
         /// <summary>
@@ -102,8 +81,6 @@ namespace Vistian.Reactive.Logging
         /// <param name="entry"></param>
         public void Publish(RxLogEntry entry)
         {
-            Initialize();
-
             _pumpSubject.OnNext(entry);
         }
 
@@ -121,7 +98,7 @@ namespace Vistian.Reactive.Logging
         /// Build all of the subscriptions.
         /// </summary>
         /// <param name="logSource"></param>
-        public void BuildSubscribers(IObservable<RxLogEntry> logSource)
+        private void BuildSubscribers(IObservable<RxLogEntry> logSource)
         {
             foreach (var subscriber in Configuration.Subscribers)
             {

@@ -70,7 +70,7 @@ namespace Vistian.Reactive.Metrics
         public TimingBlock(string name)
         {
             Name = name;
-            _sw = Stopwatch.StartNew();
+            _sw = new Stopwatch();
         }
 
         /// <summary>

@@ -89,14 +89,15 @@ namespace Vistian.Reactive.Metrics
         {
             lock (_lock)
             {
+                var dto = DateTimeOffset.UtcNow;
 
                 LastValue = newValue;
                 if (Count == 0)
                 {
-                    FirstDateTimeOffset = DateTimeOffset.UtcNow;
+                    FirstDateTimeOffset = dto;
                 }
 
-                LastDateTimeOffset = DateTimeOffset.UtcNow;
+                LastDateTimeOffset = dto;
 
                 // perhaps we need to increment a value ?
                 ++Count;

@@ -99,12 +99,14 @@ namespace Vistian.Reactive.Paging
         {
             if (_indexesTouched == null)
             {
-                _indexesTouched = new HashSet<int>();
+                _indexesTouched = new HashSet<int> {index};
+
                 _uiScheduler.Schedule(index, TimeSpan.FromTicks(_bundleTicks), (s, i) => this.InternalTouched());
             }
-
-            _indexesTouched.Add(index);
-
+            else
+            {
+                _indexesTouched.Add(index);
+            }
         }
 
         /// <summary>

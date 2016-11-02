@@ -20,14 +20,29 @@ namespace Vistian.Reactive.Validation
         // validation object
         private ObservableAsPropertyHelper<bool> _isValid;
 
+        /// <summary>
+        /// Get whether valid or nt
+        /// </summary>
         public bool IsValid => _isValid.Value;
 
+
+        /// <summary>
+        /// Backing for <see cref="ValidationText"/>
+        /// </summary>
         private ObservableAsPropertyHelper<ValidationText> _message;
+
+        /// <summary>
+        /// Get the ValidationText
+        /// </summary>
         public ValidationText Message => _message.Value;
 
+        /// <summary>
+        /// Get whenever the <see cref="ValidationState"/> changes
+        /// </summary>
         public IObservable<ValidationState> ValidationChanged => _validation.ValidationStatusChange;
 
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
+
 
         public ValidationHelper(IValidationComponent validation)
         {

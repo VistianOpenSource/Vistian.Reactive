@@ -97,16 +97,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging\ClassifiedTests.cs" />
+    <Compile Include="Logging\LoggerConfigurationTests.cs" />
+    <Compile Include="Logging\ObservableMixinsTests.cs" />
+    <Compile Include="Logging\RxLogEntryMetaTests.cs" />
+    <Compile Include="Logging\RxLogEntryTests.cs" />
+    <Compile Include="Logging\RxLogTests.cs" />
+    <Compile Include="Logging\RxObservableLogHostTests.cs" />
+    <Compile Include="Metrics\CounterTests.cs" />
+    <Compile Include="Metrics\DiscreteTests.cs" />
+    <Compile Include="Metrics\MetricTests.cs" />
+    <Compile Include="Metrics\TimerTests.cs" />
+    <Compile Include="Metrics\TimingBlockTests.cs" />
+    <Compile Include="Metrics\TimingContextTests.cs" />
     <Compile Include="Paging\ChangeSetProviderTests.cs" />
+    <Compile Include="Paging\CollectionItemTouchedStrategyTests.cs" />
     <Compile Include="Paging\CollectionModel.cs" />
     <Compile Include="Paging\ObservablePagingControllerTests.cs" />
+    <Compile Include="Paging\PagedObservableKeyedReactiveListChangeSetProviderTests.cs" />
     <Compile Include="Paging\ReadOnlyStrategyPagedCollectionTests.cs" />
     <Compile Include="Paging\SimpleBackingStoreCollectionTests.cs" />
     <Compile Include="Paging\TestChangeSetPagedDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ModelObservableTests.cs" />
     <Compile Include="Validation\PropertyValidationTests.cs" />
+    <Compile Include="Validation\SingleLineFormatterTests.cs" />
     <Compile Include="Validation\TestViewModel.cs" />
+    <Compile Include="Validation\TextValidationComponent.cs" />
+    <Compile Include="Validation\ValidationContextTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

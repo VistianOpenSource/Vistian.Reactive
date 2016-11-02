@@ -50,7 +50,7 @@ namespace Vistian.Reactive.Logging
 
             if (Enabled)
             {
-                Default.LogHost?.Publish(entry);
+                LogHost.Publish(entry);
             }
         }
 

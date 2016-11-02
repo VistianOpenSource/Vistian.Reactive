@@ -128,7 +128,6 @@ namespace Vistian.Reactive.Validation
                                 Do(vc => _validationStatusChange.OnNext(vc)).
                                 Subscribe());
 
-
             // observe the defined validations and whenever there is a change publish the current validation state.
             _validationConnectable = _validations.CountChanged.
                                             StartWith(0).
@@ -138,6 +137,10 @@ namespace Vistian.Reactive.Validation
                                             Multicast(_validSubject);
         }
 
+        /// <summary>
+        /// Add a <see cref="IValidationComponent"/> to those being monitored for validation state
+        /// </summary>
+        /// <param name="validation"></param>
         public void Add(IValidationComponent validation)
         {
             _validations.Add(validation);
@@ -157,7 +160,6 @@ namespace Vistian.Reactive.Validation
         {
             return new ValidationText(_validations.Where(p => !p.IsValid).Select(p => p.Text));
         }
-
 
         public void Dispose()
         {

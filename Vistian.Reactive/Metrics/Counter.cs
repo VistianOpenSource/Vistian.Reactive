@@ -39,6 +39,7 @@ namespace Vistian.Reactive.Metrics
         {
             Unit = unit;
             Name = name;
+            Instances[string.Empty] = 0;
         }
 
         /// <summary>
@@ -89,7 +90,6 @@ namespace Vistian.Reactive.Metrics
 
                 Instances[label] = value;
             }
-
         }
 
         /// <summary>

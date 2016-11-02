@@ -54,17 +54,32 @@ namespace Vistian.Reactive.Paging
         /// <summary>
         /// Apply retrieved data to the underlying <see cref="KeyedReactiveList{TItem,TKey}"/>
         /// </summary>
-        /// <param name="newList"></param>
+        /// <param name="offset"></param>
+        /// <param name="items"></param>
         /// <param name="replaceAll"></param>
-        protected override void AddUpdate(List<TItem> newList, bool replaceAll = false)
+        protected override void AddUpdate(int offset,List<TItem> items, bool replaceAll = false)
         {
             if (replaceAll)
             {
-                _list.SmartUpdate(newList);
+                _list.SmartUpdate(items);
             }
             else
             {
-                _list.AddRange(newList);
+                var trulyNewContentOffset = 0;
+
+                if (offset < _list.Count)
+                {
+                    trulyNewContentOffset = _list.Count;
+
+                    var startOffset = offset;
+                    // we need to do a replacement for certain items and then do an add range...
+                    for (var index = 0; index< _list.Count-startOffset; ++index)
+                    {
+                        _list[startOffset+index] = items[index];
+                    }
+                }
+
+                _list.AddRange(items.GetRange(trulyNewContentOffset,offset+items.Count-_list.Count));
             }
         }
 

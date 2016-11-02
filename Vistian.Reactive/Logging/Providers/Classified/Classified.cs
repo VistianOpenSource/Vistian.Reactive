@@ -15,9 +15,9 @@ namespace Vistian.Reactive.Logging.Providers
     [Formatter(typeof(ClassifiedFormatter))]
     public class Classified
     {
-        private const string DefaultExceptionMessage = "Exception Type {0} , Exception Message: {1}";
-        private const string DefaultExceptionMessageWithAdditional = "Exception Type {0} , Exception Message: {1} Additional Details : {2}";
-        private const string DefaultNoMessage = "";
+        public const string DefaultExceptionMessage = "Exception Type {0} , Exception Message: {1}";
+        public const string DefaultExceptionMessageWithAdditional = "Exception Type {0} , Exception Message: {1} Additional Details : {2}";
+        public const string DefaultNoMessage = "";
 
         /// <summary>
         /// Get the level 
@@ -83,20 +83,45 @@ namespace Vistian.Reactive.Logging.Providers
 
         public static Classified Error(Exception exception)
         {
-            return new Classified(LogLevel.Error, exception.Message);
+            return new Classified(LogLevel.Error, DefaultExceptionMessage,new object[] { exception.GetType().Name, exception.Message }) { Exception = exception };
         }
 
         public static Classified Error(Exception exception, string message)
         {
-            var fullMessage = string.Format(DefaultExceptionMessageWithAdditional, exception.GetType().Name, exception.Message, message);
-
-            return new Classified(LogLevel.Error, fullMessage);
+            return new Classified(LogLevel.Error, DefaultExceptionMessageWithAdditional,new object[] { exception.GetType().Name, exception.Message, message }) {Exception = exception};
         }
 
         public static Classified Error(string format, params object[] args)
         {
             return new Classified(LogLevel.Error, format, args);
         }
+
+        public static Classified Fatal()
+        {
+            return new Classified(LogLevel.Fatal, DefaultNoMessage);
+        }
+
+        public static Classified Fatal(string message)
+        {
+            return new Classified(LogLevel.Fatal, message);
+        }
+
+
+        public static Classified Fatal(Exception exception)
+        {
+            return new Classified(LogLevel.Fatal, DefaultExceptionMessage,new object[] { exception.GetType().Name, exception.Message }) { Exception = exception };
+        }
+
+        public static Classified Fatal(Exception exception, string message)
+        {
+            return new Classified(LogLevel.Fatal, DefaultExceptionMessageWithAdditional,new object[] { exception.GetType().Name, exception.Message, message }) { Exception = exception };
+        }
+
+        public static Classified Fatal(string format, params object[] args)
+        {
+            return new Classified(LogLevel.Fatal, format, args);
+        }
+
 
 
         public static Classified Information()
@@ -111,9 +136,12 @@ namespace Vistian.Reactive.Logging.Providers
 
         public static Classified Information(Exception exception)
         {
-            var message = string.Format(DefaultExceptionMessage, exception.GetType().Name, exception.Message);
+            return new Classified(LogLevel.Information, DefaultExceptionMessage,new object[] { exception.GetType().Name, exception.Message }) { Exception = exception };
+        }
 
-            return new Classified(LogLevel.Information, message) { Exception = exception };
+        public static Classified Information(Exception exception,string additional)
+        {
+            return new Classified(LogLevel.Information, DefaultExceptionMessageWithAdditional,new object[] {exception.GetType().Name,exception.Message,additional}) { Exception = exception };
         }
 
         public static Classified Information(string format, params object[] args)
@@ -137,6 +165,12 @@ namespace Vistian.Reactive.Logging.Providers
 
             return new Classified(LogLevel.Warning, message) { Exception = exception }; ;
         }
+
+        public static Classified Warn(Exception exception,string additional)
+        {
+            return new Classified(LogLevel.Warning, DefaultExceptionMessageWithAdditional, new object[] { exception.GetType().Name, exception.Message, additional }) { Exception = exception }; ;
+        }
+
         public static Classified Warn(string format, params object[] args)
         {
             return new Classified(LogLevel.Warning, format, args);
@@ -144,19 +178,24 @@ namespace Vistian.Reactive.Logging.Providers
 
         public static Classified Debug()
         {
-            return new Classified(LogLevel.Information, DefaultNoMessage);
+            return new Classified(LogLevel.Debug, DefaultNoMessage);
         }
 
         public static Classified Debug(string message)
         {
-            return new Classified(LogLevel.Information, message);
+            return new Classified(LogLevel.Debug, message);
         }
 
         public static Classified Debug(Exception exception)
         {
-            var message = string.Format(DefaultExceptionMessage, exception.GetType().Name, exception.Message);
-            return new Classified(LogLevel.Debug, message) { Exception = exception }; ;
+            return new Classified(LogLevel.Debug, DefaultExceptionMessage,new object[] { exception.GetType().Name, exception.Message}) { Exception = exception }; ;
         }
+
+        public static Classified Debug(Exception exception,string additional)
+        {
+            return new Classified(LogLevel.Debug, DefaultExceptionMessageWithAdditional,new object[] { exception.GetType().Name, exception.Message, additional }) { Exception = exception }; ;
+        }
+
 
         public static Classified Debug(string format, params object[] args)
         {

@@ -31,7 +31,7 @@ namespace Vistian.Reactive.Logging.Configuration
         /// <summary>
         /// Get or set the error function.
         /// </summary>
-        public Func<Exception, IObservable<Unit>> Errored { get; set; }
+        public Func<Exception, IObservable<Unit>> Errored { get;  }
 
         /// <summary>
         /// 
@@ -39,14 +39,15 @@ namespace Vistian.Reactive.Logging.Configuration
         /// <param name="publishScheduler"></param>
         /// <param name="replaySize"></param>
         /// <param name="prePumpObservable"></param>
+        /// <param name="errored"></param>
         public HostConfiguration(IScheduler publishScheduler = null, int replaySize = 1,
-            Func<IObservable<RxLogEntry>, IObservable<RxLogEntry>> prePumpObservable = null)
+            Func<IObservable<RxLogEntry>, IObservable<RxLogEntry>> prePumpObservable = null,Func<Exception,IObservable<Unit>> errored=null)
         {
-            Errored = (e) => Observable.Return(Unit.Default);
-
             PublishScheduler = publishScheduler ?? TaskPoolScheduler.Default;
 
             PrePumpObservable = prePumpObservable ?? ((o) => o);
+
+            Errored = errored ?? ((e) => Observable.Return(Unit.Default));
 
             ReplaySize = replaySize;
         }

@@ -15,6 +15,7 @@ namespace Vistian.Reactive.Paging
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
     /// <typeparam name="TKey"></typeparam>
+    /// <remarks>This code may well be pending and update to Dynamic Data to ensure ordering is maintained.</remarks>
     public class PagedObservableCacheChangeSetProvider<TItem, TKey> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
     {
         /// <summary>
@@ -61,9 +62,10 @@ namespace Vistian.Reactive.Paging
         /// <summary>
         /// Smartly update the current cache with the specified list.
         /// </summary>
-        /// <param name="newList"></param>
+        /// <param name="offset"></param>
+        /// <param name="items"></param>
         /// <param name="replaceAll"></param>
-        protected override void AddUpdate(List<TItem> newList, bool replaceAll = false)
+        protected override void AddUpdate(int offset,List<TItem> items, bool replaceAll = false)
         {
             _cache.Edit((c) =>
             {
@@ -71,7 +73,7 @@ namespace Vistian.Reactive.Paging
                 {
                     c.Clear();
                 }
-                c.AddOrUpdate(newList);
+                c.AddOrUpdate(items);
             });
         }
 

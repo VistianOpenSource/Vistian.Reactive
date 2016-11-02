@@ -67,6 +67,7 @@
     <Compile Include="Metrics\Counter.cs" />
     <Compile Include="Metrics\Discrete.cs" />
     <Compile Include="Metrics\IMetric.cs" />
+    <Compile Include="Metrics\ITimerContext.cs" />
     <Compile Include="Metrics\Logging\CounterFormatter.cs" />
     <Compile Include="Metrics\Logging\DiscreteFormatter.cs" />
     <Compile Include="Metrics\Logging\LoggingTimerContext.cs" />

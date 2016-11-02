@@ -163,7 +163,7 @@ namespace Vistian.Reactive.Paging
                     return _pageReader.ReadRangeObservable(alignedStart, alignedEnd).
                         ObserveOn(_updateScheduler).
                         Do(l => Total = l.Total).
-                        Do(l => AddUpdate(l.Items, replaceExisting));
+                        Do(l => AddUpdate(l.Offset,l.Items, replaceExisting));
                 }
                 // no need to remotely read anything, just get on with it
                 return Observable.Return(new PageReadResult<TItem>(pageReadRequest.Offset, this.Total, null));
@@ -184,9 +184,10 @@ namespace Vistian.Reactive.Paging
         /// <summary>
         /// Add or Update update the current cache with the specified list.
         /// </summary>
-        /// <param name="newList"></param>
+        /// <param name="offset"></param>
+        /// <param name="items"></param>
         /// <param name="replaceAll">Indicates if all existing data should be replaced.</param>
-        protected abstract void AddUpdate(List<TItem> newList, bool replaceAll = false);
+        protected abstract void AddUpdate(int offset,List<TItem> items, bool replaceAll = false);
 
         /// <summary>
         /// Cancel all outstanding enqueued operations.

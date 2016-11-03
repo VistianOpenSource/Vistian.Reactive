@@ -58,7 +58,7 @@ namespace Vistian.Reactive.UnitTests.Metrics
             Assert.Equal(SubsequentSetValue,_discrete.Value);
             Assert.Equal(2,_discrete.Count);
 
-            Assert.True(_discrete.LastDateTimeOffset > _discrete.FirstDateTimeOffset);
+            Assert.True(_discrete.LastDateTimeOffset >= _discrete.FirstDateTimeOffset);
         }
 
 

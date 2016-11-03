@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Vistian.Reactive")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Reactive library for logging, validation and paging.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Vistian")]
 [assembly: AssemblyProduct("Vistian.Reactive")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

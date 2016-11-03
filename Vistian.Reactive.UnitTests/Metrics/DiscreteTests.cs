@@ -17,7 +17,6 @@ namespace Vistian.Reactive.UnitTests.Metrics
         private const int InitialSetValue = 121;
         private const int SubsequentSetValue = 122;
 
-
         public DiscreteTests()
         {
             _discrete = new Discrete<int>(Name,DefaultUnit);
@@ -60,7 +59,6 @@ namespace Vistian.Reactive.UnitTests.Metrics
 
             Assert.True(_discrete.LastDateTimeOffset >= _discrete.FirstDateTimeOffset);
         }
-
 
         [Fact]
         public void CreateDefaultTest()

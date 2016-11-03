@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Vistian.Reactive</id>
+    <version>1.0.0</version>
+    <title>Vistian.Reactive</title>
+    <authors>Vistian</authors>
+    <owners>Vistian</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/VistianOpenSource/Vistian.Reactive</licenseUrl>
+    <projectUrl>https://github.com/VistianOpenSource/Vistian.Reactive</projectUrl>
+    <description>Reactive library for logging, validation and paging.</description>
+    <copyright>Copyright 2016</copyright>
+    <dependencies>
+      <dependency id="DynamicData" version="4.9.0.1189" />
+      <dependency id="PCLStorage" version="1.0.2" />
+      <dependency id="reactiveui" version="7.0.0.1477555604" />
+    </dependencies>
+  </metadata>
+<files>
+<file src="bin\Release\Vistian.Reactive.dll" target="lib\portable45-net45+win8+wpa81\"/>
+<file src="bin\Release\Vistian.Reactive.pdb" target="lib\portable45-net45+win8+wpa81\"/>
+<file src="bin\Release\Vistian.Core.dll" target="lib\portable45-net45+win8+wpa81\"/>
+<file src="bin\Release\Vistian.Core.pdb" target="lib\portable45-net45+win8+wpa81\"/>
+</files>
+</package>

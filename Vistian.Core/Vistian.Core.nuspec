@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Vistian.Core</id>
+    <version>0.0.1</version>
+    <title>Vistian.Core</title>
+    <authors>Vistian</authors>
+    <owners>Vistian</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/VistianOpenSource/Vistian.Reactive</licenseUrl>
+    <projectUrl>https://github.com/VistianOpenSource/Vistian.Reactive</projectUrl>
+    <description>Support library for Vistian.Reactive.</description>
+    <copyright>Copyright 2016</copyright>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Vistian.Core.dll" target="lib\portable45-net45+win8+wpa81\"/>
+    <file src="bin\Release\Vistian.Core.pdb" target="lib\portable45-net45+win8+wpa81\"/>
+  </files>
+</package>

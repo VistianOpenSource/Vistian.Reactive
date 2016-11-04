@@ -1974,10 +1974,61 @@ namespace Vistian.Reactive.Droid
 			public static int design_snackbar_background = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public static int navigation_empty_icon = 2130837590;
+			public static int ic_add_circle_white_48dp = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public static int notification_template_icon_bg = 2130837591;
+			public static int ic_arrow_downward_black_24dp = 2130837591;
+			
+			// aapt resource value: 0x7f020058
+			public static int ic_arrow_downward_white_24dp = 2130837592;
+			
+			// aapt resource value: 0x7f020059
+			public static int ic_bug_black_24dp = 2130837593;
+			
+			// aapt resource value: 0x7f02005a
+			public static int ic_bug_black_48dp = 2130837594;
+			
+			// aapt resource value: 0x7f02005b
+			public static int ic_bug_grey600_24dp = 2130837595;
+			
+			// aapt resource value: 0x7f02005c
+			public static int ic_bug_grey600_48dp = 2130837596;
+			
+			// aapt resource value: 0x7f02005d
+			public static int ic_bug_white_18dp = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public static int ic_bug_white_24dp = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public static int ic_bug_white_48dp = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public static int ic_clear_white_24dp = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public static int ic_content_copy_white_24dp = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public static int ic_message_black_48dp = 2130837602;
+			
+			// aapt resource value: 0x7f020063
+			public static int ic_message_white_48dp = 2130837603;
+			
+			// aapt resource value: 0x7f020064
+			public static int ic_pause_white_24dp = 2130837604;
+			
+			// aapt resource value: 0x7f020065
+			public static int ic_play_arrow_white_24dp = 2130837605;
+			
+			// aapt resource value: 0x7f020066
+			public static int ic_remove_white_24dp = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public static int navigation_empty_icon = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public static int notification_template_icon_bg = 2130837608;
 			
 			static Drawable()
 			{
@@ -2091,6 +2142,39 @@ namespace Vistian.Reactive.Droid
 			// aapt resource value: 0x7f060020
 			public static int collapseActionView = 2131099680;
 			
+			// aapt resource value: 0x7f06008b
+			public static int consoleClearButton = 2131099787;
+			
+			// aapt resource value: 0x7f06008e
+			public static int consoleCloseButton = 2131099790;
+			
+			// aapt resource value: 0x7f06008d
+			public static int consoleCopyClipboardButton = 2131099789;
+			
+			// aapt resource value: 0x7f060086
+			public static int consoleExpandedLayout = 2131099782;
+			
+			// aapt resource value: 0x7f060087
+			public static int consoleLogList = 2131099783;
+			
+			// aapt resource value: 0x7f060089
+			public static int consoleMinimizeButton = 2131099785;
+			
+			// aapt resource value: 0x7f060084
+			public static int consoleMinimizedLayout = 2131099780;
+			
+			// aapt resource value: 0x7f06008a
+			public static int consolePlayPauseButton = 2131099786;
+			
+			// aapt resource value: 0x7f060085
+			public static int consoleRestoreButton = 2131099781;
+			
+			// aapt resource value: 0x7f060088
+			public static int consoleToolbar = 2131099784;
+			
+			// aapt resource value: 0x7f06008c
+			public static int consoleTrackLatestButton = 2131099788;
+			
 			// aapt resource value: 0x7f06004d
 			public static int contentPanel = 2131099725;
 			
@@ -2195,6 +2279,9 @@ namespace Vistian.Reactive.Droid
 			
 			// aapt resource value: 0x7f060044
 			public static int list_item = 2131099716;
+			
+			// aapt resource value: 0x7f06008f
+			public static int logItemTextLabel = 2131099791;
 			
 			// aapt resource value: 0x7f06007a
 			public static int media_actions = 2131099770;
@@ -2577,16 +2664,22 @@ namespace Vistian.Reactive.Droid
 			public static int notification_template_part_time = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public static int select_dialog_item_material = 2130903087;
+			public static int overlay = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public static int select_dialog_multichoice_material = 2130903088;
+			public static int overlayLogItem = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public static int select_dialog_singlechoice_material = 2130903089;
+			public static int select_dialog_item_material = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public static int support_simple_spinner_dropdown_item = 2130903090;
+			public static int select_dialog_multichoice_material = 2130903090;
+			
+			// aapt resource value: 0x7f030033
+			public static int select_dialog_singlechoice_material = 2130903091;
+			
+			// aapt resource value: 0x7f030034
+			public static int support_simple_spinner_dropdown_item = 2130903092;
 			
 			static Layout()
 			{

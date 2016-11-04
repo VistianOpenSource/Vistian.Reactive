@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/consoleMinimizedLayout"
+      android:visibility="visible">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_bug_white_48dp"
+        android:id="@+id/consoleRestoreButton"
+        android:layout_margin="8dp" />
+  </LinearLayout>
+  <FrameLayout
+      android:id="@+id/consoleExpandedLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/consoleLogList"
+        android:background="@android:color/background_dark" />
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/consoleToolbar"
+        android:background="@android:color/background_dark"
+        android:alpha="0.7">
+      <ImageButton
+          android:src="@drawable/ic_bug_white_24dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/consoleMinimizeButton"
+          android:layout_margin="8dp"
+          android:background="@android:color/transparent" />
+      <ImageButton
+          android:src="@drawable/ic_pause_white_24dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/consolePlayPauseButton"
+          android:layout_margin="8dp"
+          android:background="@android:color/transparent"
+          android:layout_toRightOf="@id/consoleMinimizeButton" />
+      <ImageButton
+          android:src="@drawable/ic_clear_white_24dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/consoleClearButton"
+          android:layout_margin="8dp"
+          android:background="@android:color/transparent"
+          android:layout_toRightOf="@id/consolePlayPauseButton" />
+      <ImageButton
+          android:src="@drawable/ic_arrow_downward_white_24dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/consoleTrackLatestButton"
+          android:layout_margin="8dp"
+          android:background="@android:color/transparent"
+          android:layout_toRightOf="@id/consoleClearButton" />
+      <ImageButton
+          android:src="@drawable/ic_content_copy_white_24dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/consoleCopyClipboardButton"
+          android:layout_margin="8dp"
+          android:background="@android:color/transparent"
+          android:layout_toRightOf="@id/consoleTrackLatestButton" />
+      <ImageButton
+          android:src="@drawable/ic_clear_white_24dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/consoleCloseButton"
+          android:layout_margin="8dp"
+          android:background="@android:color/transparent"
+          android:layout_alignParentRight="true" />
+    </RelativeLayout>
+  </FrameLayout>
+</FrameLayout>

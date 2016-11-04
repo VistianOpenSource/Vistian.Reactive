@@ -106,7 +106,7 @@ namespace Vistian.Reactive.Logging
                         {
                             RxLog.Log(meta, i);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             
                             throw;

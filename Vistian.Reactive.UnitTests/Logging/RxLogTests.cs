@@ -57,10 +57,9 @@ namespace Vistian.Reactive.UnitTests.Logging
             _logHost.Verify(p => p.Publish(entry), Times.Never);
         }
 
-        [Fact]
+        [Fact(Skip="random failure  - static issue?")]
         public void StaticPublishChannelsThroughDefaultTest()
         {
-            return;
             RxLog.SetDefault(_log);
 
             var entry = new RxLogEntry(new RxLogEntryMeta(null, "", 0), new object());

@@ -14,11 +14,11 @@
     <dependencies>
       <dependency id="reactiveui" version="7.0.0.1477555604" />
       <dependency id="Xamarin.Android.Support.Design" version="24.2.1" />
-      <dependency id="Vistian.Core" version="0.0.1"/>
+      <dependency id="Vistian.Reactive" version="0.0.1"/>
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Vistian.Reactive.Droid.dll" target="lib\monoandroid7\"/>
-    <file src="bin\Release\Vistian.Reactive.Droid.pdb" target="lib\monoandroid7\"/>
+    <file src="bin\Release\Vistian.Reactive.Droid.dll" target="lib\monoandroid70\"/>
+    <file src="bin\Release\Vistian.Reactive.Droid.pdb" target="lib\monoandroid70\"/>
   </files>
 </package>

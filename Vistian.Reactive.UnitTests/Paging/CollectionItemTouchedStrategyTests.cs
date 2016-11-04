@@ -44,6 +44,7 @@ namespace Vistian.Reactive.UnitTests.Paging
         {
             _cits.IndexReferenced(10);
 
+
             // need to verify that it correctly requests the right page
             _csp.Verify(c => c.ReadPageObservable(It.Is((PageReadRequest p) => p.Offset==0 && p.Take==25)));
         }

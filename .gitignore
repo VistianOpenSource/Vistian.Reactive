@@ -250,3 +250,5 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/Vistian.Reactive.Droid/Vistian.Reactive.Droid.sln
+/Vistian.Reactive.Droid/nuget.config

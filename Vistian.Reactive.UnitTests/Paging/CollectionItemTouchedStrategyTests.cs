@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Concurrency;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
@@ -24,7 +25,7 @@ namespace Vistian.Reactive.UnitTests.Paging
 
             _csp.Setup(c => c.MaxPageSize).Returns(25);
 
-            _cits = new CollectionItemTouchedStrategy<CollectionModel>(_backingStore.Object);
+            _cits = new CollectionItemTouchedStrategy<CollectionModel>(_backingStore.Object,0,Scheduler.Immediate,Scheduler.Immediate);
 
 
             _backingStore.Setup(p => p.ChangeSetProvider).Returns(_csp.Object);

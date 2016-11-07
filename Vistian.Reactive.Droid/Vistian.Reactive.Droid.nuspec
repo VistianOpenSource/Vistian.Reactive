@@ -12,7 +12,8 @@
     <description>Android library for Vistian.Reactive, including Android specific features.</description>
     <copyright>Copyright 2016</copyright>
     <dependencies>
-      <dependency id="reactiveui" version="7.0.0" />
+      <dependency id="reactiveui" version="7.0.0-alpha0479" />
+      <dependency id="reactiveui-core" version="7.0.0-alpha0479" />
       <dependency id="Xamarin.Android.Support.Design" version="24.2.1" />
       <dependency id="Vistian.Reactive" version="0.0.1"/>
     </dependencies>

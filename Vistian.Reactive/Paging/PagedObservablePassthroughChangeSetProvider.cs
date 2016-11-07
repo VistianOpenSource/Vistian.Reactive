@@ -61,8 +61,8 @@ namespace Vistian.Reactive.Paging
             {
 
                 // need to generate updates from zero.
-                //_changeSetSubject.OnNext(new ChangeSet<TItem>(new Change<TItem>(ListChangeReason.Clear)));
-                //_list.SmartUpdate(items);//
+               // _changeSetSubject.OnNext(new ChangeSet<TItem>(new Change<TItem>(ListChangeReason.Clear,) ));
+               // _list.SmartUpdate(items);//
 
                 _offset = items.Count;
             }

@@ -57,39 +57,39 @@ namespace Vistian.Reactive.Paging
         /// <param name="replaceAll"></param>
         protected override void AddUpdate(int offset, List<TItem> items, bool replaceAll = false)
         {
+            var changes = new List<Change<TItem>>(items.Count);
+
             if (replaceAll)
             {
+                changes.Add(new Change<TItem>(ListChangeReason.Clear, new TItem[] { }, 0));
 
-                // need to generate updates from zero.
-               // _changeSetSubject.OnNext(new ChangeSet<TItem>(new Change<TItem>(ListChangeReason.Clear,) ));
-               // _list.SmartUpdate(items);//
-
-                _offset = items.Count;
+                _offset = 0;
             }
-            else
+
+            if (offset < _offset)
             {
-
-                var trulyNewContentOffset = 0;
-
-                if (offset < _offset)
+                var startOffset = offset;
+                // we need to do a replacement for certain items and then do an add range...
+                for (var index = 0; index < _offset - startOffset; ++index)
                 {
-                    trulyNewContentOffset = _offset;
+                    var replace = new Change<TItem>(ListChangeReason.Replace,items[index],items[index],startOffset+index,startOffset+index);
 
-                    var startOffset = offset;
-                    // we need to do a replacement for certain items and then do an add range...
-                    for (var index = 0; index < _offset - startOffset; ++index)
-                    {
-                        // need to generate replace changesets here...
-
-                  //      _list[startOffset + index] = items[index];
-                    }
+                    changes.Add(replace);
                 }
-
-                // need to generate add change sets here
-                //_list.AddRange(items.GetRange(trulyNewContentOffset, offset + items.Count - _offset));
-
-                _offset = Math.Max(_offset, offset + items.Count);
             }
+
+            // need to generate add change sets here
+            //_list.AddRange(items.GetRange(trulyNewContentOffset, offset + items.Count - _offset));
+
+            for(var finalOffset = _offset;finalOffset < offset + items.Count;finalOffset++)
+            {
+                var addition = new Change<TItem>(ListChangeReason.Add, items[finalOffset - offset],finalOffset);
+                changes.Add(addition);
+            }
+
+            _changeSetSubject.OnNext(new ChangeSet<TItem>(changes));
+
+            _offset = Math.Max(_offset, offset + items.Count);
         }
 
         /// <summary>

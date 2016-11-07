@@ -41,7 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ReactiveUI, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Vistian.Reactive\packages\reactiveui-core.7.0.0-alpha0477\lib\MonoAndroid403\ReactiveUI.dll</HintPath>
+      <HintPath>..\Vistian.Reactive\packages\reactiveui-core.7.0.0-alpha0478\lib\MonoAndroid403\ReactiveUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Splat, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -46,7 +46,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ReactiveUI, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Vistian.Reactive\packages\reactiveui-core.7.0.0.1477555604\lib\Net45\ReactiveUI.dll</HintPath>
+      <HintPath>..\Vistian.Reactive\packages\reactiveui-core.7.0.0-alpha0477\lib\portable-net45+netcore45+wpa81+win8+wp8+UAP10+MonoAndroid403+MonoTouch10+Xamarin.iOS10\ReactiveUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Splat, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -14,7 +14,7 @@
     <dependencies>
       <dependency id="DynamicData" version="4.9.0.1189" />
       <dependency id="PCLStorage" version="1.0.2" />
-      <dependency id="reactiveui" version="7.0.0.1477555604" />
+      <dependency id="reactiveui" version="7.0.0" />
       <dependency id="Vistian.Core" version="0.0.1"/>
     </dependencies>
   </metadata>

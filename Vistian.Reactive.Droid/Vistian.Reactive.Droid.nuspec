@@ -15,7 +15,7 @@
       <dependency id="reactiveui" version="7.0.0-alpha0479" />
       <dependency id="reactiveui-core" version="7.0.0-alpha0479" />
       <dependency id="Xamarin.Android.Support.Design" version="24.2.1" />
-      <dependency id="Vistian.Reactive" version="0.0.1"/>
+      <dependency id="Vistian.Reactive" version="0.0.1-ci-20161107-144412"/>
     </dependencies>
   </metadata>
   <files>

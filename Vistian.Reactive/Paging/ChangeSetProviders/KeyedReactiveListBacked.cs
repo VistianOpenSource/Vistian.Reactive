@@ -1,26 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Concurrency;
-using System.Text;
-using System.Threading.Tasks;
 using DynamicData;
 using Vistian.Reactive.ReactiveUI;
 
-namespace Vistian.Reactive.Paging
+namespace Vistian.Reactive.Paging.ChangeSetProviders
 {
     /// <summary>
     /// Paged ChangeSet Provider backed with a <see cref="KeyedReactiveList{TItem,TKey}"/>
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
     /// <typeparam name="TKey"></typeparam>
-    public class PagedObservableKeyedReactiveListChangeSetProvider<TItem, TKey> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
+    public class KeyedReactiveListBacked<TItem, TKey> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
     {
         private readonly KeyedReactiveList<TItem, TKey> _list;
 
         public IList<TItem> Items => _list;
 
-        public PagedObservableKeyedReactiveListChangeSetProvider(IPagingController<TItem> pagingController, Func<TItem, TKey> keySelector, IScheduler readScheduler = null, IScheduler updateScheduler = null) : base(pagingController, readScheduler, updateScheduler)
+        public KeyedReactiveListBacked(IPagingController<TItem> pagingController, Func<TItem, TKey> keySelector, IScheduler readScheduler = null, IScheduler updateScheduler = null) : base(pagingController, readScheduler, updateScheduler)
         {
             _list = new KeyedReactiveList<TItem, TKey>(keySelector);
         }
@@ -99,16 +96,16 @@ namespace Vistian.Reactive.Paging
         }
     }
 
-    public static class PagedObservableKeyedReactiveListChangeSetProvider
+    public static class KeyedReactiveListBacked
     {
-        public static PagedObservableKeyedReactiveListChangeSetProvider<TItem, TKey> FromObservable<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, Func<TItem, TKey> keySelector, int maxPageSize)
+        public static KeyedReactiveListBacked<TItem, TKey> FromObservable<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, Func<TItem, TKey> keySelector, int maxPageSize)
         {
-            return new PagedObservableKeyedReactiveListChangeSetProvider<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize), keySelector);
+            return new KeyedReactiveListBacked<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize), keySelector);
         }
 
-        public static PagedObservableKeyedReactiveListChangeSetProvider<TItem, TKey> FromObservable<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, Func<TItem, TKey> keySelector, int maxPageSize, Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable)
+        public static KeyedReactiveListBacked<TItem, TKey> FromObservable<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, Func<TItem, TKey> keySelector, int maxPageSize, Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable)
         {
-            return new PagedObservableKeyedReactiveListChangeSetProvider<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize, exceptionObservable: exceptionObservable), keySelector);
+            return new KeyedReactiveListBacked<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize, exceptionObservable: exceptionObservable), keySelector);
         }
     }
 }

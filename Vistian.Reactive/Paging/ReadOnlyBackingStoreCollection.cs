@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using DynamicData;
 using ReactiveUI;
 using Vistian.Contract;
+using Vistian.Reactive.Paging.ChangeSetProviders;
 
 namespace Vistian.Reactive.Paging
 {
@@ -205,7 +206,7 @@ namespace Vistian.Reactive.Paging
                                                                     ICollectionItemTouchedStrategy collectionTouchedStrategy = null,
                                                                     IPagedBackingStoreCollection<T> backingStoreCollection = null) where T : class
         {
-            var provider = PagedObservableCacheChangeSetProvider<T, TKey>.FromObservable(readPageObservable, keySelector, maxPageSize, onException);
+            var provider = SourceCacheBacked<T, TKey>.FromObservable(readPageObservable, keySelector, maxPageSize, onException);
 
             return Create(provider, collectionTouchedStrategy);
         }
@@ -222,14 +223,14 @@ namespace Vistian.Reactive.Paging
         /// <param name="onException"></param>
         /// <param name="collectionTouchedStrategy"></param>
         /// <returns></returns>
-        /// <remarks>Uses a <see cref="PagedObservableKeyedReactiveListChangeSetProvider{TItem,TKey}"/> using the provided onException and maxPageSize values.</remarks>
+        /// <remarks>Uses a <see cref="KeyedReactiveListBacked{TItem,TKey}"/> using the provided onException and maxPageSize values.</remarks>
         public static ReadOnlyBackingStoreCollection<TItem> FromKeyedReactiveListPager<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readPageObservable, Func<TItem, TKey> keySelector, int maxPageSize = 10, Func<PageReadRequest, Exception, IObservable<bool>> onException = null,
                                                                     ICollectionItemTouchedStrategy collectionTouchedStrategy = null)
                                                                     where TItem : class
         {
 
             // create the provider of the changesets
-            var provider = PagedObservableKeyedReactiveListChangeSetProvider.FromObservable(readPageObservable, keySelector, maxPageSize, onException);
+            var provider = KeyedReactiveListBacked.FromObservable(readPageObservable, keySelector, maxPageSize, onException);
 
             // this is our list which acts as the backing store for the above stuff...
             return Create(provider, collectionTouchedStrategy);

@@ -7,15 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using Vistian.Reactive.Paging;
+using Vistian.Reactive.Paging.ChangeSetProviders;
 using Vistian.Reactive.ReactiveUI;
 using Xunit;
 
 namespace Vistian.Reactive.UnitTests.Paging
 {
-    public class PagedObservableKeyedReactiveListChangeSetProviderTests
+    public class KeyedReactiveListChangeSetProviderTests
     {
         private readonly Mock<IPagingController<CollectionModel>> _pagingController;
-        private PagedObservableKeyedReactiveListChangeSetProvider<CollectionModel, string> _provider;
+        private KeyedReactiveListBacked<CollectionModel, string> _provider;
         private List<CollectionModel> _itemFirstSet;
         private List<CollectionModel> _itemSecondSet;
         private List<CollectionModel> _itemReplacementFirstSet;
@@ -23,7 +24,7 @@ namespace Vistian.Reactive.UnitTests.Paging
 
         public const int DefaultPageSize = 2;
 
-        public PagedObservableKeyedReactiveListChangeSetProviderTests()
+        public KeyedReactiveListChangeSetProviderTests()
         {
             var scheduler = Scheduler.Immediate;
 
@@ -31,7 +32,7 @@ namespace Vistian.Reactive.UnitTests.Paging
 
             _pagingController.Setup(p => p.MaxPageSize).Returns(DefaultPageSize);
 
-            _provider = new PagedObservableKeyedReactiveListChangeSetProvider<CollectionModel,string>(_pagingController.Object,(m) => m.Key,scheduler,scheduler);
+            _provider = new KeyedReactiveListBacked<CollectionModel,string>(_pagingController.Object,(m) => m.Key,scheduler,scheduler);
 
             _itemFirstSet = new List<CollectionModel>()
             {

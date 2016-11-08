@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Text;
-using System.Threading.Tasks;
 using DynamicData;
 using Vistian.Reactive.ReactiveUI;
 
-namespace Vistian.Reactive.Paging
+namespace Vistian.Reactive.Paging.ChangeSetProviders
 {
     /// <summary>
     /// Paged ChangeSet Provider which just passes through changes, the assumption being the underlying paging controller is a completely read only source.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public class PagedObservablePassthroughChangeSetProvider<TItem> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
+    public class Simple<TItem> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
     {
-        public PagedObservablePassthroughChangeSetProvider(IPagingController<TItem> pagingController, IScheduler readScheduler = null, IScheduler updateScheduler = null) : base(pagingController, readScheduler, updateScheduler)
+        public Simple(IPagingController<TItem> pagingController, IScheduler readScheduler = null, IScheduler updateScheduler = null) : base(pagingController, readScheduler, updateScheduler)
         {
         }
 
         private int _offset = 0;
 
 
-        private Subject<IChangeSet<TItem>> _changeSetSubject = new Subject<IChangeSet<TItem>>();
+        private readonly Subject<IChangeSet<TItem>> _changeSetSubject = new Subject<IChangeSet<TItem>>();
         /// <summary>
         /// Create a change set
         /// </summary>
@@ -78,9 +75,6 @@ namespace Vistian.Reactive.Paging
                 }
             }
 
-            // need to generate add change sets here
-            //_list.AddRange(items.GetRange(trulyNewContentOffset, offset + items.Count - _offset));
-
             for(var finalOffset = _offset;finalOffset < offset + items.Count;finalOffset++)
             {
                 var addition = new Change<TItem>(ListChangeReason.Add, items[finalOffset - offset],finalOffset);
@@ -101,22 +95,23 @@ namespace Vistian.Reactive.Paging
             this.CancelPending();
 
             // build the request
-             var pageRequest = new PageReadRequest() { Offset = 0, Take = _offset };
+            var pageRequest = new PageReadRequest() { Offset = 0, Take = _offset };
 
             // and now do the update
             EnqueueReadObservable(pageRequest, true);
         }
     }
 
-    public static class PagedObservablePassthroughChangeSetProvider
+    public static class Simple
     {
-        public static PagedObservablePassthroughChangeSetProvider<TItem> FromObservable<TItem>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, int maxPageSize)
-        {            return new PagedObservablePassthroughChangeSetProvider<TItem>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize));
+        public static Simple<TItem> FromObservable<TItem>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, int maxPageSize)
+        {
+            return new Simple<TItem>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize));
         }
 
-        public static PagedObservablePassthroughChangeSetProvider<TItem> FromObservable<TItem>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, int maxPageSize, Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable)
+        public static Simple<TItem> FromObservable<TItem>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, int maxPageSize, Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable)
         {
-            return new PagedObservablePassthroughChangeSetProvider<TItem>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize, exceptionObservable: exceptionObservable));
+            return new Simple<TItem>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize, exceptionObservable: exceptionObservable));
         }
     }
 

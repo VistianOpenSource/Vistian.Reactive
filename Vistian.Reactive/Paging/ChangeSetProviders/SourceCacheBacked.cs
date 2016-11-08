@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DynamicData;
 
-namespace Vistian.Reactive.Paging
+namespace Vistian.Reactive.Paging.ChangeSetProviders
 {
     /// <summary>
     /// An observable,changeset provider, backed by a <see cref="SourceCache{TObject,TKey}"/>
@@ -16,7 +13,7 @@ namespace Vistian.Reactive.Paging
     /// <typeparam name="TItem"></typeparam>
     /// <typeparam name="TKey"></typeparam>
     /// <remarks>This code may well be pending and update to Dynamic Data to ensure ordering is maintained.</remarks>
-    public class PagedObservableCacheChangeSetProvider<TItem, TKey> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
+    public class SourceCacheBacked<TItem, TKey> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
     {
         /// <summary>
         /// Our cached list of results
@@ -30,7 +27,7 @@ namespace Vistian.Reactive.Paging
         /// <param name="keySelector"></param>
         /// <param name="readScheduler"></param>
         /// <param name="updateScheduler"></param>
-        public PagedObservableCacheChangeSetProvider(IPagingController<TItem> pagingController,
+        public SourceCacheBacked(IPagingController<TItem> pagingController,
             Func<TItem, TKey> keySelector,
             IScheduler readScheduler = null,
             IScheduler updateScheduler = null) : base(pagingController, readScheduler, updateScheduler)
@@ -91,16 +88,16 @@ namespace Vistian.Reactive.Paging
         }
 
 
-        public static PagedObservableCacheChangeSetProvider<TItem, TKey> FromObservable(
+        public static SourceCacheBacked<TItem, TKey> FromObservable(
             Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, Func<TItem, TKey> keySelector, int maxPageSize)
         {
-            return new PagedObservableCacheChangeSetProvider<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize), keySelector);
+            return new SourceCacheBacked<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize), keySelector);
         }
 
-        public static PagedObservableCacheChangeSetProvider<TItem, TKey> FromObservable(
+        public static SourceCacheBacked<TItem, TKey> FromObservable(
             Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, Func<TItem, TKey> keySelector, int maxPageSize, Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable)
         {
-            return new PagedObservableCacheChangeSetProvider<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize, exceptionObservable: exceptionObservable), keySelector);
+            return new SourceCacheBacked<TItem, TKey>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize, exceptionObservable: exceptionObservable), keySelector);
         }
     }
 }

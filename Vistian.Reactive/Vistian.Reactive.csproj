@@ -85,6 +85,9 @@
     <Compile Include="Metrics\Unit.cs" />
     <Compile Include="Paging\BaseChangeSetProvider.cs" />
     <Compile Include="Paging\BaseChangeSetProviderMixins.cs" />
+    <Compile Include="Paging\ChangeSetProviders\SourceCacheBacked.cs" />
+    <Compile Include="Paging\ChangeSetProviders\KeyedReactiveListBacked.cs" />
+    <Compile Include="Paging\ChangeSetProviders\Simple.cs" />
     <Compile Include="Paging\CollectionItemTouchedStrategy.cs" />
     <Compile Include="Paging\DynamicDataReactiveListExtensions.cs" />
     <Compile Include="Paging\IChangeSetPagedDataProvider.cs" />
@@ -95,9 +98,6 @@
     <Compile Include="Paging\IPagingController.cs" />
     <Compile Include="Paging\ObservablePagingController.cs" />
     <Compile Include="Paging\OperationQueue.cs" />
-    <Compile Include="Paging\PagedObservableCacheChangeSetProvider.cs" />
-    <Compile Include="Paging\PagedObservableKeyedReactiveListChangeSetProvider.cs" />
-    <Compile Include="Paging\PagedObservablePassthroughChangeSetProvider.cs" />
     <Compile Include="Paging\PageReader.cs" />
     <Compile Include="Paging\PageReadRequest.cs" />
     <Compile Include="Paging\PageReadResult.cs" />

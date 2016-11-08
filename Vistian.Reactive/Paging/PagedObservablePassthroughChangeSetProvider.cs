@@ -108,4 +108,17 @@ namespace Vistian.Reactive.Paging
         }
     }
 
+    public static class PagedObservablePassthroughChangeSetProvider
+    {
+        public static PagedObservablePassthroughChangeSetProvider<TItem> FromObservable<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, int maxPageSize)
+        {
+            return new PagedObservablePassthroughChangeSetProvider<TItem>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize));
+        }
+
+        public static PagedObservablePassthroughChangeSetProvider<TItem> FromObservable<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunksObservable, int maxPageSize, Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable)
+        {
+            return new PagedObservablePassthroughChangeSetProvider<TItem>(new ObservablePagingController<TItem>(readChunksObservable, maxPageSize: maxPageSize, exceptionObservable: exceptionObservable));
+        }
+    }
+
 }

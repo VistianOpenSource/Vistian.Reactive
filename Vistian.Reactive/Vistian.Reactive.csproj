@@ -169,7 +169,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="NuGet.Config" />
     <None Include="packages.config" />
     <None Include="Vistian.Reactive.nuspec" />
   </ItemGroup>

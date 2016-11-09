@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Reactive", "Vistian.Reactive.csproj", "{71A37EB3-C1AA-4C67-9F6D-8D14E73C285A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Reactive", "Vistian.Reactive\Vistian.Reactive.csproj", "{71A37EB3-C1AA-4C67-9F6D-8D14E73C285A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Reactive.Droid", "..\Vistian.Reactive.Droid\Vistian.Reactive.Droid.csproj", "{7621DACD-2B77-4895-B431-DE12DFF31272}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Reactive.Droid", "Vistian.Reactive.Droid\Vistian.Reactive.Droid.csproj", "{7621DACD-2B77-4895-B431-DE12DFF31272}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Reactive.UnitTests", "..\Vistian.Reactive.UnitTests\Vistian.Reactive.UnitTests.csproj", "{07AF8B5E-CE2D-47B4-8368-EB8E3BC75386}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Reactive.UnitTests", "Vistian.Reactive.UnitTests\Vistian.Reactive.UnitTests.csproj", "{07AF8B5E-CE2D-47B4-8368-EB8E3BC75386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Core", "..\Vistian.Core\Vistian.Core.csproj", "{738EF0AA-C2BA-46E0-849F-505A8BDCB6FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vistian.Core", "Vistian.Core\Vistian.Core.csproj", "{738EF0AA-C2BA-46E0-849F-505A8BDCB6FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

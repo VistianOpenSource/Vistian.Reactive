@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Vistian.Core</id>
-    <version>0.0.1</version>
+    <version>$version$</version>
     <title>Vistian.Core</title>
     <authors>Vistian</authors>
     <owners>Vistian</owners>

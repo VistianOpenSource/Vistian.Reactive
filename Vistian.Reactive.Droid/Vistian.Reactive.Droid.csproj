@@ -111,10 +111,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging\Subscribers\AndroidOverlay\ConsoleSubscriber.cs" />
     <Compile Include="Logging\Subscribers\AndroidOverlay\Overlay.cs" />
     <Compile Include="Logging\Subscribers\AndroidOverlay\OverlayService.cs" />
     <Compile Include="Logging\Subscribers\AndroidOverlay\ListItem.cs" />
     <Compile Include="Logging\Subscribers\AndroidOverlay\RxOverlayLogAdapter.cs" />
+    <Compile Include="Logging\Subscribers\DroidConsole\DroidConsole.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\IViewForValidateableMixins.cs" />

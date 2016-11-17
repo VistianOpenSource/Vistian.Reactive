@@ -59,6 +59,7 @@
     <Compile Include="Logging\RxLogEntryCoreMixins.cs" />
     <Compile Include="Logging\RxLogEntryMeta.cs" />
     <Compile Include="Logging\RxLogEntryMixins.cs" />
+    <Compile Include="Logging\RxLoggerConfigurationExtensions.cs" />
     <Compile Include="Logging\RxObservableLogHost.cs" />
     <Compile Include="Logging\Subscribers\Debug\Debug.cs" />
     <Compile Include="Logging\Subscribers\IO\FileLog.cs" />

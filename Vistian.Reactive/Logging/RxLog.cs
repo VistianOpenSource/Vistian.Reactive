@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Vistian.Contract;
+using Vistian.Reactive.Logging.Configuration;
 using Vistian.Reactive.Logging.Providers;
 
 namespace Vistian.Reactive.Logging
@@ -66,6 +67,19 @@ namespace Vistian.Reactive.Logging
                 return;
             }
             RxLog.Default = rxLog;
+        }
+
+        /// <summary>
+        /// Set the default <see cref="RxLog"/> based upon a specified configuration.
+        /// </summary>
+        /// <param name="configuration"></param>
+        public static void SetDefault(RxLoggerConfiguration configuration)
+        {
+            Guard.NotNull(configuration);
+
+            var host = configuration.CreateHost();
+
+            RxLog.SetDefault(new RxLog(host));
         }
 
         /// <summary>

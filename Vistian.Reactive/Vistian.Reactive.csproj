@@ -53,6 +53,7 @@
     <Compile Include="Logging\Providers\Classified\Classified.cs" />
     <Compile Include="Logging\Providers\Classified\ClassifiedFormatter.cs" />
     <Compile Include="Logging\Providers\Classified\LogLevel.cs" />
+    <Compile Include="Logging\Providers\Classified\ThrowExtensions.cs" />
     <Compile Include="Logging\RxLog.cs" />
     <Compile Include="Logging\RxLogEntry.cs" />
     <Compile Include="Logging\RxLogEntryCoreMixins.cs" />

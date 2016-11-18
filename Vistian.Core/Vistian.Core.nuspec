@@ -14,8 +14,10 @@
     <dependencies>
     </dependencies>
   </metadata>
+  <!--
   <files>
     <file src="bin\Release\Vistian.Core.dll" target="lib\portable45-net45+win8+wpa81\"/>
     <file src="bin\Release\Vistian.Core.pdb" target="lib\portable45-net45+win8+wpa81\"/>
   </files>
+  -->
 </package>

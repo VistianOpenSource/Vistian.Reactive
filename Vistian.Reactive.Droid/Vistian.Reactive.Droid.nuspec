@@ -18,10 +18,8 @@
       <dependency id="Vistian.Reactive" version="$version$"/>
     </dependencies>
   </metadata>
-  <!--
   <files>
-    <file src="bin\Release\Vistian.Reactive.Droid.dll" target="lib\monoandroid70\"/>
-    <file src="bin\Release\Vistian.Reactive.Droid.pdb" target="lib\monoandroid70\"/>
+    <file src="bin\$BuildConfiguration$\Vistian.Reactive.Droid.dll" target="lib\monoandroid70\"/>
+    <file src="bin\$BuildConfiguration$\Vistian.Reactive.Droid.pdb" target="lib\monoandroid70\"/>
   </files>
-  -->
 </package>

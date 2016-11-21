@@ -176,7 +176,6 @@
     <None Include="Vistian.Reactive.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Paging\JsonCSharpClassGenerator.exe" />
     <Content Include="Validation\BasePropertyValidationGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BasePropertyValidationGenerator.cs</LastGenOutput>

@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\ContractTests.cs" />
     <Compile Include="Logging\ClassifiedTests.cs" />
     <Compile Include="Logging\LoggerConfigurationTests.cs" />
     <Compile Include="Logging\ObservableMixinsTests.cs" />

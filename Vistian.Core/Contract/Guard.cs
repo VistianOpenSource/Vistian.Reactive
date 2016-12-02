@@ -69,9 +69,29 @@ namespace Vistian.Contract
         [Conditional("DEBUG")]
         public static void Implements<TInterface>(Type type, string parameterName = null)
         {
+            Guard.NotNull(type,parameterName);
+
             if (!type.GetTypeInfo().ImplementedInterfaces.Contains(typeof(TInterface)))
             {
                 throw new ArgumentException(parameterName);
+            }
+        }
+
+        /// <summary>
+        /// Check that a specified object implements a specified type.
+        /// </summary>
+        /// <typeparam name="TInterface"></typeparam>
+        /// <param name="item"></param>
+        /// <param name="parameterName"></param>
+        [DebuggerStepThrough]
+        [Conditional("DEBUG")]
+        public static void Implements<TInterface>(object item, string parameterName = null)
+        {
+            Guard.NotNull(item,parameterName);
+
+            if (!item.GetType().GetTypeInfo().ImplementedInterfaces.Contains(typeof(TInterface)))
+            {
+                throw new ArgumentException(parameterName,parameterName);
             }
         }
     }

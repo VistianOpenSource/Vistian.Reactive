@@ -160,7 +160,7 @@ An Android service allowing you to easily view the logging information on your A
 * Minimized to just an icon
 * Can be moved around screen
 
-[[https://github.com/VistianOpenSource/Vistian.Reactive/tree/master/Vistian.Reactive/docs/AndroidLoggingConsole.png|alt=console]]
+![Console](AndroidLoggingConsole.png?raw=true "Console")
 
 ## Outstanding
 1. No console view currently for iOS, might be possible to do something similar to Android console.

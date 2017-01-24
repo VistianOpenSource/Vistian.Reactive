@@ -172,10 +172,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="docs\LoggingOverview.md" />
+    <None Include="docs\MetricsOverview.md" />
+    <None Include="docs\PagingOverview.md" />
+    <None Include="docs\ValidationOverview.md" />
     <None Include="packages.config" />
     <None Include="Vistian.Reactive.nuspec" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="docs\AndroidLoggingConsole.png" />
     <Content Include="Validation\BasePropertyValidationGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BasePropertyValidationGenerator.cs</LastGenOutput>

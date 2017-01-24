@@ -8,7 +8,7 @@ using DynamicData;
 namespace Vistian.Reactive.Paging
 {
     /// <summary>
-    /// An enchaned paged data provider that additionally provides data updates through <see cref="IChangeSet"/>
+    /// An enhanced paged data provider that additionally provides data updates through <see cref="IChangeSet"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IChangeSetPagedDataProvider<T> : IPagedDataProvider<T>

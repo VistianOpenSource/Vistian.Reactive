@@ -45,6 +45,7 @@ namespace Vistian.Reactive.Paging
             {
                 Touched(index);
 
+
                 return base[index];
             }
             set

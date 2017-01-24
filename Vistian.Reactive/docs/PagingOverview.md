@@ -21,26 +21,27 @@ public ReadOnlyBackingStoreCollection<SimpleModel> List {get; set; }`
 
 2. In the constructor of the view model set the relationship between the above collection and your provider of data, either using one of the provided templated solutions, or more explicitly.
 
-```// MyPageReadingObservable loads the data in pages, 10 is the max size of the page of data to read, HandleException is called when an exception occurs. Handle Exception is an Observable that if it returns true forces the read operation to occur again
+```
+    // MyPageReadingObservable loads the data in pages, 10 is the max size of the page of data to read, HandleException is called when an exception occurs. Handle Exception is an Observable that if it returns true forces the read operation to occur again
 
-List = ReadOnlyBackingStoreCollection.FromKeyedReactiveListPager( MyPageReadingObservable, (s) => s.Key, 10, HandleException); 
+    List = ReadOnlyBackingStoreCollection.FromKeyedReactiveListPager( MyPageReadingObservable, (s) => s.Key, 10, HandleException); 
 ```
 
-3. Add your paged reading observable code and the optional exception handler.
+    3. Add your paged reading observable code and the optional exception handler.
+```
+    private IObservable<bool> HandleException(PageReadRequest readRequest, Exception exception)
+    {
+        ...
+        // return true to retry the read again, otherwise false.
+    }
 
-``` private IObservable<bool> HandleException(PageReadRequest readRequest, Exception exception)
-{
-...
-// return true to retry the read again, otherwise false.
-}
-
-private IObservable<PageReadResult<SimpleModel>> MyPageReadingObservable(PageReadRequest request)
-{
-return Observable.Create<PageReadResult<SimpleModel>>((s) =>
-{
-... actual read code here
-});
-}
+    private IObservable<PageReadResult<SimpleModel>> MyPageReadingObservable(PageReadRequest request)
+    {
+        return Observable.Create<PageReadResult<SimpleModel>>((s) =>
+        {
+        ... actual read code here
+        });
+    }
 ```
 
 4. In the UI bind the collection in exactly the way you normally would.
@@ -48,17 +49,17 @@ return Observable.Create<PageReadResult<SimpleModel>>((s) =>
 
 ## How it works
 
-The lowest level assumes that there is a provider of paged data through a standard IPagingController implementation. The library provides a few standard implementations of this controller which take an Observable to handle the reading of paged data.
+The lowest level assumes that there is a provider of paged data through a standard **IPagingController** implementation. The library provides a few standard implementations of this controller which take an Observable to handle the reading of paged data.
 
-The View Model would contain a fascade of an observable collection, ReadOnlyBackingStoreCollection. This collection in fact doesn't hold any data at all, but instead does a few things:
-1. Uses an implementation of a ICollectionItemTouchedStrategy to indicate  when a specific index in the collection has been referenced.
-2. Uses a IPagedBackingStoreCollection implementation to actually provide content.
+The View Model would contain a fascade of an observable collection, **ReadOnlyBackingStoreCollection**. This collection in fact doesn't hold any data at all, but instead does a few things:
+1. Uses an implementation of a **ICollectionItemTouchedStrategy** to indicate  when a specific index in the collection has been referenced.
+2. Uses a **IPagedBackingStoreCollection** implementation to actually provide content.
 3. Observes changes in the IPagedBackingStoreCollection and re-raises these events in the ReadOnlyBackingStoreCollection. These events flag to the UI that the underlying data has changed.
 
 
 There is a simplistic implementation of ICollectionItemTouchedStrategy which requests the reading of a page when an item is referenced that isn't present in the backing store.
 
-Similarly, there is an implementation of IPagedBackingStoreCollection, SimpleBackingStoreCollection which maintains a collection of all of the data read so far.
+Similarly, there is an implementation of IPagedBackingStoreCollection, **SimpleBackingStoreCollection** which maintains a collection of all of the data read so far.
 
 It should be noted that whilst the current implementation is focussed around a fascade collection which is bound to, the library is a 'bag of parts' which should be easily composible to differing solutions should that be required.
 

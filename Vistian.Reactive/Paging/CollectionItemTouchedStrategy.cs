@@ -137,24 +137,7 @@ namespace Vistian.Reactive.Paging
         /// <returns></returns>
         protected virtual IObservable<int> CreateOffsets(HashSet<int> indexes)
         {
-            var maxPageSize = _pagedBackingStoreCollection.ChangeSetProvider.MaxPageSize;
-
-            var offsetsToRead = new HashSet<int>();
-
-            foreach (var index in indexes)
-            {
-                // work out the aligned base that this falls into
-                // we potentially align upwards to force the read of the page following, ensuring a contiguous run.
-                var alignedOffset = (maxPageSize == int.MaxValue) ? index : ((int)Math.Round(((float)index) / maxPageSize)) * maxPageSize;
-
-                // if don't have a total, or we are below the total amount then enqueue the read...
-                if (!_pagedBackingStoreCollection.Total.HasValue || alignedOffset < _pagedBackingStoreCollection.Total)
-                {
-                    offsetsToRead.Add(alignedOffset);
-                }
-            }
-
-            return offsetsToRead.ToObservable();
+            return _pagedBackingStoreCollection.CreateOffsets(indexes).ToObservable();
         }
     }
 }

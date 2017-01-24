@@ -96,6 +96,7 @@
     <Compile Include="Paging\IChangeSetPagedDataProvider.cs" />
     <Compile Include="Paging\ICollectionItemTouchedStrategy.cs" />
     <Compile Include="Paging\IPagedBackingStoreCollection.cs" />
+    <Compile Include="Paging\IPagedBackingStoreCollectionMixins.cs" />
     <Compile Include="Paging\IPagedDataProvider.cs" />
     <Compile Include="Paging\IPagedDataProviderMixins.cs" />
     <Compile Include="Paging\IPagingController.cs" />

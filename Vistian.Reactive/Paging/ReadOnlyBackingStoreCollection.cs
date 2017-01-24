@@ -260,8 +260,7 @@ namespace Vistian.Reactive.Paging
         /// <param name="backingStoreCollection"></param>
         /// <param name="collectionTouchedStrategy">If not specified, <see cref="CollectionItemTouchedStrategy{TItem}"/> is used.</param>
         /// <returns></returns>
-        public static ReadOnlyBackingStoreCollection<T> Create<T>(IPagedBackingStoreCollection<T> backingStoreCollection, ICollectionItemTouchedStrategy collectionTouchedStrategy = null)
-            where T : class
+        public static ReadOnlyBackingStoreCollection<T> Create<T>(IPagedBackingStoreCollection<T> backingStoreCollection, ICollectionItemTouchedStrategy collectionTouchedStrategy = null) where T : class
         {
             // the strategy to request page loads in the backing store
 

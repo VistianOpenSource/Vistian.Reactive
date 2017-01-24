@@ -30,6 +30,7 @@ namespace Vistian.Reactive.Paging
         /// Enqueue a specified operation
         /// </summary>
         /// <param name="actionFunc"></param>
+        /// <param name="cancelObservable"></param>
         public IObservable<T> Enqueue<T, TCancel>(Func<IObservable<T>> actionFunc, IObservable<TCancel> cancelObservable)
         {
             var queueItem = new QueueItem<T>(actionFunc, cancelObservable.Select(_ => Unit.Default));
@@ -45,7 +46,6 @@ namespace Vistian.Reactive.Paging
         /// <summary>
         /// Get a cancellation token and create one if doesn't exist.
         /// </summary>
-
         /// <summary>
         /// Create an instance for a specified scheduler.
         /// </summary>

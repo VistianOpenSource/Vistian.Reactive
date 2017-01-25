@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,10 +41,10 @@ namespace Vistian.Reactive.Paging
         /// <summary>
         /// Create those indexes which are going to be requested.
         /// </summary>
+        /// <param name="pagedBackingStoreCollection"></param>
         /// <param name="indexes"></param>
         /// <returns></returns>
-        public static IEnumerable<int> CreateOffsets<TResultItem>(
-            this IPagedBackingStoreCollection<TResultItem> pagedBackingStoreCollection, IEnumerable<int> indexes)
+        public static IEnumerable<int> CreateOffsets<TResultItem>(this IPagedBackingStoreCollection<TResultItem> pagedBackingStoreCollection, IEnumerable<int> indexes)
         {
             var maxPageSize = pagedBackingStoreCollection.ChangeSetProvider.MaxPageSize;
 
@@ -68,6 +69,13 @@ namespace Vistian.Reactive.Paging
         }
 
 
+        /// <summary>
+        /// Create an enumeration of offsets required to read up to a specified offset.
+        /// </summary>
+        /// <typeparam name="TResultItem"></typeparam>
+        /// <param name="pagedBackingStoreCollection"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
         public static IEnumerable<int> CreateOffsetsUpTo<TResultItem>(
             this IPagedBackingStoreCollection<TResultItem> pagedBackingStoreCollection, int offset)
         {
@@ -93,6 +101,21 @@ namespace Vistian.Reactive.Paging
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Create sequence of read operations to load data up to a specified offset.
+        /// </summary>
+        /// <typeparam name="TResultItem"></typeparam>
+        /// <param name="pagedBackingStoreCollection"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public static IDisposable CreateReadsUpTo<TResultItem>(this IPagedBackingStoreCollection<TResultItem> pagedBackingStoreCollection,int offset)
+        {
+            return pagedBackingStoreCollection.CreateOffsetsUpTo(offset).
+                Select(o => pagedBackingStoreCollection.ChangeSetProvider.CreateReadRequest(o)).ToObservable().
+                SelectMany(pr => pagedBackingStoreCollection.ChangeSetProvider.ReadPageObservable(pr)).
+                Subscribe();
         }
     }
 }

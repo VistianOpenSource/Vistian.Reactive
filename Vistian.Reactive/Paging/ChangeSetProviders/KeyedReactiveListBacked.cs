@@ -42,7 +42,7 @@ namespace Vistian.Reactive.Paging.ChangeSetProviders
         /// <param name="alignedEnd"></param>
         /// <returns></returns>
         /// <remarks>
-        /// Be considerable to a forced reload to ensure the complete data is re-read.</remarks>
+        /// Be considerate to forced reloads to ensure the complete data is re-read.</remarks>
         protected override bool GetReadRange(PageReadRequest pageReadRequest, bool forceReload, ref int alignedStart, ref int alignedEnd)
         {
             return this.CalcReadRange(pageReadRequest, forceReload ? 0 : _list.Count, ref alignedStart, ref alignedEnd);

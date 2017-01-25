@@ -15,6 +15,15 @@ namespace Vistian.Reactive.Paging
     {
         private readonly ICollectionItemTouchedStrategy _touchedStrategy;
 
+        /// <summary>
+        /// Create a collection with a null touch strategy.
+        /// </summary>
+        /// <param name="pagedBackingStoreCollection"></param>
+        public ReadOnlyStrategyPagedCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection)
+            : this(pagedBackingStoreCollection, NullCollectionItemTouchedStrategy.Instance)
+        {            
+        }
+
         public ReadOnlyStrategyPagedCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection,
             ICollectionItemTouchedStrategy touchedStrategy) : base(pagedBackingStoreCollection)
         {

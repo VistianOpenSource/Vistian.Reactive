@@ -101,6 +101,7 @@
     <Compile Include="Paging\IPagedDataProvider.cs" />
     <Compile Include="Paging\IPagedDataProviderMixins.cs" />
     <Compile Include="Paging\IPagingController.cs" />
+    <Compile Include="Paging\NullCollectionItemTouchedStrategy.cs" />
     <Compile Include="Paging\ObservablePagingController.cs" />
     <Compile Include="Paging\OperationQueue.cs" />
     <Compile Include="Paging\PageReader.cs" />

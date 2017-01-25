@@ -36,7 +36,7 @@ namespace Vistian.Reactive.Paging
         /// <param name="offset"></param>
         /// <param name="take"></param>
         /// <returns></returns>
-        public IObservable<PageReadResult<TItem>> ReadPage(int offset, int take)
+        public virtual IObservable<PageReadResult<TItem>> ReadPage(int offset, int take)
         {
             var request = new PageReadRequest() { Offset = offset, Take = Math.Min(take,MaxPageSize) };
 

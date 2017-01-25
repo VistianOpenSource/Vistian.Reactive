@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vistian.Contract;
-using Vistian.Reactive.Linq;
 
 namespace Vistian.Reactive.Paging
 {
@@ -13,34 +11,19 @@ namespace Vistian.Reactive.Paging
     /// Wrapper class for observable paged readers, implementing <see cref="IPagingController{TItem}"/>
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public class ObservablePagingController<TItem> : IPagingController<TItem>
+    public class ObservablePagingController<TItem> : BasePagingController<TItem>
     {
         private readonly Func<PageReadRequest, IObservable<PageReadResult<TItem>>> _readChunkObservable;
         private readonly Func<PageReadRequest, Exception, IObservable<bool>> _exceptionObservable;
 
         public ObservablePagingController(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readChunkObservable,
                                             Func<PageReadRequest, Exception, IObservable<bool>> exceptionObservable = null,
-                                            int maxPageSize = 10)
+                                            int maxPageSize = 10):base(maxPageSize)
         {
             Guard.NotNull(readChunkObservable);
-            Guard.True(() => maxPageSize > 0);
 
-            MaxPageSize = maxPageSize;
             _readChunkObservable = readChunkObservable;
-            _exceptionObservable = exceptionObservable ?? DefaultErrorObservable;
-        }
-
-        /// <summary>
-        /// Attempt to read the page, with optional retry capabilities.
-        /// </summary>
-        /// <param name="offset"></param>
-        /// <param name="take"></param>
-        /// <returns></returns>
-        public virtual IObservable<PageReadResult<TItem>> ReadPage(int offset, int take)
-        {
-            var request = new PageReadRequest() { Offset = offset, Take = Math.Min(take,MaxPageSize) };
-
-            return _readChunkObservable(request).RetryX((retryCount, ex) => OnErrorObservable(request, ex));
+            _exceptionObservable = exceptionObservable;
         }
 
         /// <summary>
@@ -49,24 +32,14 @@ namespace Vistian.Reactive.Paging
         /// <param name="request"></param>
         /// <param name="exception"></param>
         /// <returns></returns>
-        protected IObservable<bool> OnErrorObservable(PageReadRequest request, Exception exception)
+        protected override IObservable<bool> OnErrorObservable(PageReadRequest request, Exception exception)
         {
-            return _exceptionObservable(request, exception);
+            return _exceptionObservable != null ? _exceptionObservable(request, exception) : DefaultErrorObservable(request,exception);
         }
 
-        /// <summary>
-        /// Default exception factory, just fail.
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="exception"></param>
-        /// <returns></returns>
-        private static IObservable<bool> DefaultErrorObservable(PageReadRequest request, Exception exception)
+        protected override IObservable<PageReadResult<TItem>> ReadPage(PageReadRequest pageReadRequest)
         {
-            return Observable.Return(false);
+            return _readChunkObservable(pageReadRequest);
         }
-        /// <summary>
-        /// Get the maximum page size
-        /// </summary>
-        public int MaxPageSize { get; }
     }
 }

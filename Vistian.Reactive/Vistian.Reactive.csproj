@@ -88,6 +88,7 @@
     <Compile Include="Metrics\Unit.cs" />
     <Compile Include="Paging\BaseChangeSetProvider.cs" />
     <Compile Include="Paging\BaseChangeSetProviderMixins.cs" />
+    <Compile Include="Paging\BasePagingController.cs" />
     <Compile Include="Paging\ChangeSetProviders\SourceCacheBacked.cs" />
     <Compile Include="Paging\ChangeSetProviders\KeyedReactiveListBacked.cs" />
     <Compile Include="Paging\ChangeSetProviders\Simple.cs" />

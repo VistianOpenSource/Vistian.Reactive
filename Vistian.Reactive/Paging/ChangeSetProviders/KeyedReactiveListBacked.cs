@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using DynamicData;
+using ReactiveUI;
 using Vistian.Reactive.ReactiveUI;
 
 namespace Vistian.Reactive.Paging.ChangeSetProviders
@@ -13,9 +14,15 @@ namespace Vistian.Reactive.Paging.ChangeSetProviders
     /// <typeparam name="TKey"></typeparam>
     public class KeyedReactiveListBacked<TItem, TKey> : BaseChangeSetProvider<TItem>, IChangeSetPagedDataProvider<TItem>
     {
+        /// <summary>
+        /// The backing list of the items read
+        /// </summary>
         private readonly KeyedReactiveList<TItem, TKey> _list;
 
-        public IList<TItem> Items => _list;
+        /// <summary>
+        /// Get the list
+        /// </summary>
+        public ReactiveList<TItem> Items => _list;
 
         public KeyedReactiveListBacked(IPagingController<TItem> pagingController, Func<TItem, TKey> keySelector, IScheduler readScheduler = null, IScheduler updateScheduler = null) : base(pagingController, readScheduler, updateScheduler)
         {

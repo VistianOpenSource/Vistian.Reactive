@@ -79,19 +79,32 @@ namespace Vistian.Reactive.Paging
         public static IEnumerable<int> CreateOffsetsUpTo<TResultItem>(
             this IPagedBackingStoreCollection<TResultItem> pagedBackingStoreCollection, int offset)
         {
-            var maxPageSize = pagedBackingStoreCollection.ChangeSetProvider.MaxPageSize;
+            return pagedBackingStoreCollection.ChangeSetProvider.CreateOffsetsUpTo(pagedBackingStoreCollection.Total,offset);
+        }
+
+        /// <summary>
+        /// Create an enumeration of offsets required to read up to a specified offset.
+        /// </summary>
+        /// <typeparam name="TResultItem"></typeparam>
+        /// <param name="changeSetProvider"></param>
+        /// <param name="total"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public static IEnumerable<int> CreateOffsetsUpTo<TResultItem>(this IChangeSetPagedDataProvider<TResultItem> changeSetProvider,int?total, int offset)
+        {
+            var maxPageSize = changeSetProvider.MaxPageSize;
 
             if (maxPageSize == int.MaxValue)
             {
                 // at most a single read
-                if (!pagedBackingStoreCollection.Total.HasValue || offset < pagedBackingStoreCollection.Total)
+                if (!total.HasValue || offset < total)
                 {
                     yield return offset;
                 }
                 {
-                    var alignedOffset = ((int) Math.Round(((float) offset) / maxPageSize)) * maxPageSize;
+                    var alignedOffset = ((int)Math.Round(((float)offset) / maxPageSize)) * maxPageSize;
 
-                    if (!pagedBackingStoreCollection.Total.HasValue || offset < pagedBackingStoreCollection.Total)
+                    if (!total.HasValue || offset < total)
                     {
                         while (alignedOffset < offset)
                         {
@@ -101,6 +114,7 @@ namespace Vistian.Reactive.Paging
                     }
                 }
             }
+
         }
 
         /// <summary>

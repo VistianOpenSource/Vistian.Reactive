@@ -90,7 +90,7 @@ namespace Vistian.Reactive.Paging.ChangeSetProviders
         /// <summary>
         /// For a reload of the existing, underlying data.
         /// </summary>
-        public void Reload()
+        public IObservable<PageReadResult<TItem>> Reload()
         {
             // cancel all pending reads, this should improve performance
             this.CancelPending();
@@ -99,7 +99,7 @@ namespace Vistian.Reactive.Paging.ChangeSetProviders
             var pageRequest = new PageReadRequest() { Offset = 0, Take = _list.Count };
 
             // and now do the update
-            EnqueueReadObservable(pageRequest, true);
+            return EnqueueReadObservable(pageRequest, true);
         }
     }
 

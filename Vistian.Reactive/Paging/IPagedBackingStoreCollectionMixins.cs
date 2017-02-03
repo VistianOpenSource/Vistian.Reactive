@@ -94,7 +94,7 @@ namespace Vistian.Reactive.Paging
         {
             var maxPageSize = changeSetProvider.MaxPageSize;
 
-            if (maxPageSize == int.MaxValue)
+            if (maxPageSize != int.MaxValue)
             {
                 // at most a single read
                 if (!total.HasValue || offset < total)
@@ -111,6 +111,23 @@ namespace Vistian.Reactive.Paging
                             yield return alignedOffset;
                             alignedOffset += maxPageSize;
                         }
+                    }
+                }
+            }
+            else
+            {
+                if (!total.HasValue || offset < total)
+                {
+                    yield return offset;
+                }
+                {
+                    if (total.HasValue)
+                    {
+                        yield return Math.Min(offset, total.Value);
+                    }
+                    else
+                    {
+                        yield return offset;
                     }
                 }
             }

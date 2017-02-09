@@ -15,7 +15,7 @@ namespace Vistian.Reactive.UnitTests.Paging
         private Mock<ICollectionItemTouchedStrategy> _strategy;
         private TestChangeSetPagedDataProvider<CollectionModel> _changeSetProvider;
         private Mock<IPagedBackingStoreCollection<CollectionModel>> _backingStore;
-        private ReadOnlyStrategyPagedCollection<CollectionModel> _collection;
+        private StrategyBasedReadOnlyCollection<CollectionModel> _collection;
 
         public ReadOnlyStrategyPagedCollectionTests()
         {
@@ -27,7 +27,7 @@ namespace Vistian.Reactive.UnitTests.Paging
             _backingStore.Setup(p => p.ChangeSetProvider).Returns(_changeSetProvider);
             _backingStore.Setup(p => p.Count).Returns(0);
 
-            _collection = new ReadOnlyStrategyPagedCollection<CollectionModel>(_backingStore.Object, _strategy.Object);
+            _collection = new StrategyBasedReadOnlyCollection<CollectionModel>(_backingStore.Object, _strategy.Object);
         }
 
         [Fact]

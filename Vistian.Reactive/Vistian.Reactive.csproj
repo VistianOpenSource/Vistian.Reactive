@@ -108,8 +108,8 @@
     <Compile Include="Paging\PageReadRequest.cs" />
     <Compile Include="Paging\PageReadResult.cs" />
     <Compile Include="Paging\ReadInProgress.cs" />
-    <Compile Include="Paging\ReadOnlyBackingStoreCollection.cs" />
-    <Compile Include="Paging\ReadOnlyStrategyPagedCollection.cs" />
+    <Compile Include="Paging\ReadOnlyCollectionFromBackingStore.cs" />
+    <Compile Include="Paging\StrategyBasedReadOnlyCollection.cs" />
     <Compile Include="Paging\SimpleBackingStoreCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ReactiveUI\KeyedReactiveList.cs" />

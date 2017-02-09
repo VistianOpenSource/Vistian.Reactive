@@ -8,10 +8,10 @@ using Vistian.Contract;
 namespace Vistian.Reactive.Paging
 {
     /// <summary>
-    /// Paged Collection extension allowing for strategy implementation around collection item referencing.
+    /// Paged Collection extension allowing for strategy implementation around collection items referencing.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public class ReadOnlyStrategyPagedCollection<TItem> : ReadOnlyBackingStoreCollection<TItem> where TItem : class
+    public class StrategyBasedReadOnlyCollection<TItem> : ReadOnlyCollectionFromBackingStore<TItem> 
     {
         private readonly ICollectionItemTouchedStrategy _touchedStrategy;
 
@@ -19,12 +19,12 @@ namespace Vistian.Reactive.Paging
         /// Create a collection with a null touch strategy.
         /// </summary>
         /// <param name="pagedBackingStoreCollection"></param>
-        public ReadOnlyStrategyPagedCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection)
+        public StrategyBasedReadOnlyCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection)
             : this(pagedBackingStoreCollection, NullCollectionItemTouchedStrategy.Instance)
         {            
         }
 
-        public ReadOnlyStrategyPagedCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection,
+        public StrategyBasedReadOnlyCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection,
             ICollectionItemTouchedStrategy touchedStrategy) : base(pagedBackingStoreCollection)
         {
             Guard.NotNull(pagedBackingStoreCollection);

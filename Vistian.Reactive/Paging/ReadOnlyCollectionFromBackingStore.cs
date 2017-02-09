@@ -17,7 +17,7 @@ namespace Vistian.Reactive.Paging
     /// Wrapper class using a provided backing store and a mechanism to allow for reporting of touched items.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public class ReadOnlyBackingStoreCollection<TItem> : IList<TItem>, INotifyCollectionChanged where TItem : class
+    public class ReadOnlyCollectionFromBackingStore<TItem> : IList<TItem>, INotifyCollectionChanged 
     {
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
@@ -30,10 +30,11 @@ namespace Vistian.Reactive.Paging
         /// Create a paged collection which wrappers a backing store.
         /// </summary>
         /// <param name="pagedBackingStoreCollection"></param>
-        public ReadOnlyBackingStoreCollection(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection)
+        public ReadOnlyCollectionFromBackingStore(IPagedBackingStoreCollection<TItem> pagedBackingStoreCollection)
         {
             Guard.NotNull(pagedBackingStoreCollection);
 
+            // Setup the subscription to pass along changes to those that are interested...
             var subscription = pagedBackingStoreCollection.
                 ChangeSetProvider.
                 Changes.
@@ -199,7 +200,7 @@ namespace Vistian.Reactive.Paging
         /// <param name="collectionTouchedStrategy">The strategy to be used when items in a collection are touched. If null <see cref="CollectionItemTouchedStrategy{TItem}"/> is used.</param>
         /// <param name="backingStoreCollection">The store to be used to back the collection. If null <see cref="SimpleBackingStoreCollection{TItem}" /> is used</param>
         /// <returns></returns>
-        public static ReadOnlyBackingStoreCollection<T> FromSourceCachePager<T, TKey>(Func<PageReadRequest, IObservable<PageReadResult<T>>> readPageObservable,
+        public static ReadOnlyCollectionFromBackingStore<T> FromSourceCachePager<T, TKey>(Func<PageReadRequest, IObservable<PageReadResult<T>>> readPageObservable,
                                                                     Func<T, TKey> keySelector,
                                                                     int maxPageSize = 10,
                                                                     Func<PageReadRequest, Exception, IObservable<bool>> onException = null,
@@ -224,7 +225,7 @@ namespace Vistian.Reactive.Paging
         /// <param name="collectionTouchedStrategy"></param>
         /// <returns></returns>
         /// <remarks>Uses a <see cref="KeyedReactiveListBacked{TItem,TKey}"/> using the provided onException and maxPageSize values.</remarks>
-        public static ReadOnlyBackingStoreCollection<TItem> FromKeyedReactiveListPager<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readPageObservable, Func<TItem, TKey> keySelector, int maxPageSize = 10, Func<PageReadRequest, Exception, IObservable<bool>> onException = null,
+        public static ReadOnlyCollectionFromBackingStore<TItem> FromKeyedReactiveListPager<TItem, TKey>(Func<PageReadRequest, IObservable<PageReadResult<TItem>>> readPageObservable, Func<TItem, TKey> keySelector, int maxPageSize = 10, Func<PageReadRequest, Exception, IObservable<bool>> onException = null,
                                                                     ICollectionItemTouchedStrategy collectionTouchedStrategy = null)
                                                                     where TItem : class
         {
@@ -244,7 +245,7 @@ namespace Vistian.Reactive.Paging
         /// <param name="collectionTouchedStrategy"></param>
         /// <returns></returns>
         /// 
-        public static ReadOnlyBackingStoreCollection<TItem> Create<TItem>(IChangeSetPagedDataProvider<TItem> provider, ICollectionItemTouchedStrategy collectionTouchedStrategy = null) where TItem : class
+        public static ReadOnlyCollectionFromBackingStore<TItem> Create<TItem>(IChangeSetPagedDataProvider<TItem> provider, ICollectionItemTouchedStrategy collectionTouchedStrategy = null) where TItem : class
         {
             // create a backing store...
             var backingStore = new SimpleBackingStoreCollection<TItem>(provider);
@@ -260,7 +261,7 @@ namespace Vistian.Reactive.Paging
         /// <param name="backingStoreCollection"></param>
         /// <param name="collectionTouchedStrategy">If not specified, <see cref="CollectionItemTouchedStrategy{TItem}"/> is used.</param>
         /// <returns></returns>
-        public static ReadOnlyBackingStoreCollection<T> Create<T>(IPagedBackingStoreCollection<T> backingStoreCollection, ICollectionItemTouchedStrategy collectionTouchedStrategy = null) where T : class
+        public static ReadOnlyCollectionFromBackingStore<T> Create<T>(IPagedBackingStoreCollection<T> backingStoreCollection, ICollectionItemTouchedStrategy collectionTouchedStrategy = null) where T : class
         {
             // the strategy to request page loads in the backing store
 
@@ -268,7 +269,7 @@ namespace Vistian.Reactive.Paging
 
             // the actual list we will bind to...
 
-            var collection = new ReadOnlyStrategyPagedCollection<T>(backingStoreCollection, touched);
+            var collection = new StrategyBasedReadOnlyCollection<T>(backingStoreCollection, touched);
 
             return collection;
         }

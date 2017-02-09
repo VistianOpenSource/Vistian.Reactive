@@ -19,7 +19,7 @@ namespace Vistian.Reactive.Paging
     /// Base class providing enqueing of read requests and changesets for the read data.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public abstract class BaseChangeSetProvider<TItem> : IPagedDataProvider<TItem>, IDisposable
+    public abstract class BaseChangeSetProvider<TItem> : IChangeSetPagedDataProvider<TItem>, IDisposable
     {
         public readonly IPagingController<TItem> PagingController;
 

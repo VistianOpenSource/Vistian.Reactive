@@ -125,7 +125,7 @@ namespace Vistian.Reactive.Paging
 
             return CreateOffsets(queue).
                 ObserveOn(_readScheduler).
-                Select(o => _pagedBackingStoreCollection.ChangeSetProvider.CreateReadRequest<TItem>(o)).
+                Select(o => _pagedBackingStoreCollection.ChangeSetProvider.CreateReadRequest(o)).
                 Select(pr => _pagedBackingStoreCollection.ChangeSetProvider.ReadPageObservable(pr)).
                 Subscribe();
         }

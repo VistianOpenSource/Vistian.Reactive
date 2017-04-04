@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Linq\ObservableRetryExtensions.cs" />
+    <Compile Include="Linq\ObservableSignalExtensions.cs" />
     <Compile Include="Logging\Configuration\HostConfiguration.cs" />
     <Compile Include="Logging\Configuration\LogFormattingConfiguration.cs" />
     <Compile Include="Logging\Configuration\RxLoggerConfiguration.cs" />
